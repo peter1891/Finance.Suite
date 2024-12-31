@@ -1,4 +1,5 @@
 ﻿using Finance.Core;
+using Finance.Utilities.FormBuilder;
 
 namespace Finance.Services.Navigation.Interface
 {
@@ -6,6 +7,8 @@ namespace Finance.Services.Navigation.Interface
     {
         ViewModelBase CurrentView { get; }
 
-        void NavigateTo<T>() where T : ViewModelBase;
+        string FormType { get; set; }
+
+        void NavigateTo<T>(String formType = "null") where T : ViewModelBase;
     }
 }
