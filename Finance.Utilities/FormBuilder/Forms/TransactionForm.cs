@@ -32,7 +32,10 @@ namespace Finance.Utilities.FormBuilder.Forms
 
         public void BuildSubmitButton()
         {
-            Button button = new Button();
+            Button button = new Button()
+            {
+                Content = "Submit",
+            };
 
             _form.SetSubmit(button);
         }

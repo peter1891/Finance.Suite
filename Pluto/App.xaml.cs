@@ -1,6 +1,9 @@
 ﻿using Finance.Core;
 using Finance.Services.Navigation;
 using Finance.Services.Navigation.Interface;
+using Finance.Utilities.FormBuilder;
+using Finance.Utilities.FormBuilder.Forms;
+using Finance.Utilities.FormBuilder.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using Pluto.ViewModels;
 using Pluto.Views;
@@ -28,7 +31,17 @@ namespace Pluto
                 DataContext = provider.GetRequiredService<MainViewModel>()
             });
 
+            services.AddSingleton<MenuView>(provider => new MenuView
+            {
+                DataContext = provider.GetRequiredService<MenuViewModel>()
+            });
+
+            services.AddSingleton<MenuViewModel>();
+            services.AddSingleton<FormViewModel>();
             services.AddSingleton<MainViewModel>();
+            services.AddSingleton<TransactionsViewModel>();
+
+            services.AddKeyedScoped<IFormBuilder, TransactionForm>("transaction");
 
             services.AddSingleton<INavigationService, NavigationService>();
 

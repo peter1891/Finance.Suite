@@ -7,5 +7,9 @@ namespace Finance.Utilities.FormBuilder.Interface
         void SetForm(Grid grid);
         void SetSubmit(Button submitButton);
         void SetCancel(Button cancelButton);
+
+        Grid GetGrid();
+        Button GetSubmit();
+        Button GetCancel();
     }
 }

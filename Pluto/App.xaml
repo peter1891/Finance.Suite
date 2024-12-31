@@ -8,9 +8,17 @@
 
         <ResourceDictionary>
 
-            <!--<DataTemplate DataType="{x:Type TypeName=vm:LoadingViewModel}">
-                <v:LoadingView/>
-            </DataTemplate>-->
+            <DataTemplate DataType="{x:Type TypeName=vm:AccountsViewModel}">
+                <v:AccountsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=vm:FormViewModel}">
+                <v:FormView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=vm:TransactionsViewModel}">
+                <v:TransactionsView/>
+            </DataTemplate>
             
         </ResourceDictionary>
          

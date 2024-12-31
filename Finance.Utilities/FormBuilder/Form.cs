@@ -9,6 +9,21 @@ namespace Finance.Utilities.FormBuilder
         private Button _submitButton;
         private Button _cancelButton;
 
+        public Button GetCancel()
+        {
+            return _cancelButton;
+        }
+
+        public Grid GetGrid()
+        {
+            return _grid;
+        }
+
+        public Button GetSubmit()
+        {
+            return _submitButton;
+        }
+
         public void SetCancel(Button cancelButton)
         {
             _cancelButton = cancelButton;

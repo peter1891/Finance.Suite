@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Finance.Utilities.FormBuilder;
+using System.Collections;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -6,6 +7,7 @@ namespace Finance.Core
 {
     public class ViewModelBase : ObservableObject, INotifyDataErrorInfo
     {
+        // Error handling using INotifyDataErrorInfo
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
         public bool HasErrors => Errors.Count > 0;
