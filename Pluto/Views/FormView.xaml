@@ -8,7 +8,13 @@
     
     <Grid>
 
-        <ContentControl Content="{Binding SubmitButton}"/>
+        <StackPanel Orientation="Horizontal">
+            
+            <ContentControl Content="{Binding SubmitButton}"/>
+
+            <ContentControl Content="{Binding CancelButton}"/>
+
+        </StackPanel>
 
     </Grid>
     

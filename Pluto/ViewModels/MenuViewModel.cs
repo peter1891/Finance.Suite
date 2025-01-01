@@ -1,5 +1,6 @@
 ﻿using Finance.Core;
 using Finance.Services.Navigation.Interface;
+using Finance.ViewModels;
 using System.Windows.Input;
 
 namespace Pluto.ViewModels

@@ -1,7 +1,4 @@
 ﻿using Finance.Core;
-using Finance.Utilities.FormBuilder;
-using Finance.Utilities.FormBuilder.Forms;
-using Finance.Utilities.FormBuilder.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using Pluto.Views;
 
@@ -22,9 +19,6 @@ namespace Pluto.ViewModels
             _menuView = _serviceProvider.GetRequiredService<MenuView>();
 
             CurrentView = _menuView;
-
-            IFormBuilder iFormBuilder = new TransactionForm();
-            Form form = iFormBuilder.GetForm();
         }
     }
 }

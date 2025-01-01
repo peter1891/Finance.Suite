@@ -1,15 +1,20 @@
-﻿using System.Windows.Controls;
+﻿using Finance.Core;
+using System.Windows.Controls;
 
 namespace Finance.Utilities.FormBuilder.Interface
 {
     public interface IForm
     {
-        void SetForm(Grid grid);
-        void SetSubmit(Button submitButton);
-        void SetCancel(Button cancelButton);
+        void SetGrid(Grid grid);
+        void SetSubmitButton(string content);
+        void SetCancelButton(string content);
+        void SetSubmitCommand(RelayCommand relayCommand);
+        void SetCancelCommand(RelayCommand relayCommand);
 
         Grid GetGrid();
-        Button GetSubmit();
-        Button GetCancel();
+        Button GetSubmitButton();
+        Button GetCancelButton();
+        RelayCommand GetSubmitCommand();
+        RelayCommand GetCancelCommand();
     }
 }

@@ -1,9 +1,9 @@
 ﻿using Finance.Core;
 using Finance.Services.Navigation;
 using Finance.Services.Navigation.Interface;
-using Finance.Utilities.FormBuilder;
-using Finance.Utilities.FormBuilder.Forms;
+using Finance.Forms;
 using Finance.Utilities.FormBuilder.Interface;
+using Finance.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Pluto.ViewModels;
 using Pluto.Views;
@@ -41,7 +41,7 @@ namespace Pluto
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<TransactionsViewModel>();
 
-            services.AddKeyedScoped<IFormBuilder, TransactionForm>("transaction");
+            services.AddKeyedScoped<IFormBuilder, TransactionFormBuilder>("transaction");
 
             services.AddSingleton<INavigationService, NavigationService>();
 

@@ -3,19 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pluto", "Pluto\Pluto.csproj", "{BF6B4D6C-18A0-4EAF-A4EB-779282092B3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pluto", "Pluto\Pluto.csproj", "{BF6B4D6C-18A0-4EAF-A4EB-779282092B3D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{DC097951-FA75-4DC6-8A16-A62130996393}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Core", "Finance.Core\Finance.Core.csproj", "{CA7FEF70-3D65-4DA3-90AC-450F01247730}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Core", "Finance.Core\Finance.Core.csproj", "{CA7FEF70-3D65-4DA3-90AC-450F01247730}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Services", "Finance.Services\Finance.Services.csproj", "{75E3E91B-051E-45AF-A980-82C14F9A2C7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Services", "Finance.Services\Finance.Services.csproj", "{75E3E91B-051E-45AF-A980-82C14F9A2C7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Models", "Finance.Models\Finance.Models.csproj", "{56B0E59F-22A5-4563-9F0D-4662ABBDBB19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Models", "Finance.Models\Finance.Models.csproj", "{56B0E59F-22A5-4563-9F0D-4662ABBDBB19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Utilities", "Finance.Utilities\Finance.Utilities.csproj", "{0B2E0F48-1AE4-4B23-AE6E-D100A2E83FAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Utilities", "Finance.Utilities\Finance.Utilities.csproj", "{0B2E0F48-1AE4-4B23-AE6E-D100A2E83FAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Repository", "Finance.Repository\Finance.Repository.csproj", "{913DE288-8C2E-483B-AC99-E3EAB63EC50F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Repository", "Finance.Repository\Finance.Repository.csproj", "{913DE288-8C2E-483B-AC99-E3EAB63EC50F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.ViewModels", "Finance.ViewModels\Finance.ViewModels.csproj", "{30580AF9-1382-4238-9330-E6F586797AC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Forms", "Finance.Forms\Finance.Forms.csproj", "{5D0CA231-6B5A-46FC-B62B-629D7BF03675}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,14 @@ Global
 		{913DE288-8C2E-483B-AC99-E3EAB63EC50F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{913DE288-8C2E-483B-AC99-E3EAB63EC50F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{913DE288-8C2E-483B-AC99-E3EAB63EC50F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30580AF9-1382-4238-9330-E6F586797AC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30580AF9-1382-4238-9330-E6F586797AC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30580AF9-1382-4238-9330-E6F586797AC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30580AF9-1382-4238-9330-E6F586797AC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D0CA231-6B5A-46FC-B62B-629D7BF03675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D0CA231-6B5A-46FC-B62B-629D7BF03675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D0CA231-6B5A-46FC-B62B-629D7BF03675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D0CA231-6B5A-46FC-B62B-629D7BF03675}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +69,8 @@ Global
 		{56B0E59F-22A5-4563-9F0D-4662ABBDBB19} = {DC097951-FA75-4DC6-8A16-A62130996393}
 		{0B2E0F48-1AE4-4B23-AE6E-D100A2E83FAF} = {DC097951-FA75-4DC6-8A16-A62130996393}
 		{913DE288-8C2E-483B-AC99-E3EAB63EC50F} = {DC097951-FA75-4DC6-8A16-A62130996393}
+		{30580AF9-1382-4238-9330-E6F586797AC9} = {DC097951-FA75-4DC6-8A16-A62130996393}
+		{5D0CA231-6B5A-46FC-B62B-629D7BF03675} = {DC097951-FA75-4DC6-8A16-A62130996393}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF6E6EF6-F53F-407C-8226-D57FC775DC00}
