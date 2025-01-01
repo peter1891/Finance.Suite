@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Finance.Core
 {
-    public class ViewModelBase : ObservableObject, INotifyDataErrorInfo
+    public abstract class ViewModelBase : ObservableObject, INotifyDataErrorInfo
     {
         // Error handling using INotifyDataErrorInfo
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
