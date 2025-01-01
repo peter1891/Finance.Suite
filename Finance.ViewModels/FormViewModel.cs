@@ -4,8 +4,9 @@ using Finance.Utilities.FormBuilder;
 using Finance.Utilities.FormBuilder.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Controls;
+using System.Windows.Input;
 
-namespace Pluto.ViewModels
+namespace Finance.ViewModels
 {
     public class FormViewModel : ViewModelBase
     {
@@ -25,6 +26,20 @@ namespace Pluto.ViewModels
             }
         }
 
+        private Button _cancelButton;
+        public Button CancelButton
+        {
+            get { return _cancelButton; }
+            set
+            {
+                _cancelButton = value;
+                OnPropertyChanged(nameof(CancelButton));
+            }
+        }
+
+        public ICommand ExecuteSubmitCommand { get; set; }
+        public ICommand ExecuteCancelCommand { get; set; }
+
         public FormViewModel(IServiceProvider serviceProvider, INavigationService navigationService) 
         {
             _serviceProvider = serviceProvider;
@@ -32,7 +47,11 @@ namespace Pluto.ViewModels
 
             _form = _serviceProvider.GetKeyedService<IFormBuilder>(_navigationService.FormType).GetForm();
 
-            SubmitButton = _form.GetSubmit();
+            SubmitButton = _form.GetSubmitButton();
+            CancelButton = _form.GetCancelButton();
+
+            ExecuteSubmitCommand = _form.GetSubmitCommand();
+            ExecuteCancelCommand = _form.GetCancelCommand();
         }
     }
 }

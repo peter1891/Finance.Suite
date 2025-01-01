@@ -1,9 +1,8 @@
 ﻿using Finance.Core;
 using Finance.Services.Navigation.Interface;
-using Finance.Utilities.FormBuilder.Forms;
 using System.Windows.Input;
 
-namespace Pluto.ViewModels
+namespace Finance.ViewModels
 {
     public class TransactionsViewModel : ViewModelBase
     {

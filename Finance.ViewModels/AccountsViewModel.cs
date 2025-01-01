@@ -1,6 +1,6 @@
 ﻿using Finance.Core;
 
-namespace Pluto.ViewModels
+namespace Finance.ViewModels
 {
     public class AccountsViewModel : ViewModelBase
     {
