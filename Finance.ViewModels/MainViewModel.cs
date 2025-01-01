@@ -1,11 +1,10 @@
 ﻿using Finance.Core;
 using Finance.Services.Navigation.Interface;
-using Finance.ViewModels;
 using System.Windows.Input;
 
-namespace Pluto.ViewModels
+namespace Finance.ViewModels
 {
-    public class MenuViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         private INavigationService _navigationService;
         public INavigationService NavigationService
@@ -20,12 +19,27 @@ namespace Pluto.ViewModels
 
         public ICommand NavigateTransactionsCommand { get; set; }
 
-        public MenuViewModel(INavigationService navigationService)
+        public MainViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
             NavigationService.NavigateTo<TransactionsViewModel>();
 
             NavigateTransactionsCommand = new RelayCommand(obj => { _navigationService.NavigateTo<TransactionsViewModel>(); }, obj => true);
         }
+
+        //private readonly IServiceProvider _serviceProvider;
+
+        //private MenuView _menuView;
+
+        //public object CurrentView { get; set; }
+
+        //public MainViewModel(IServiceProvider serviceProvider)
+        //{
+        //    _serviceProvider = serviceProvider;
+
+        //    _menuView = _serviceProvider.GetRequiredService<MenuView>();
+
+        //    CurrentView = _menuView;
+        //}
     }
 }

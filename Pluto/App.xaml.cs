@@ -5,7 +5,6 @@ using Finance.Forms;
 using Finance.Utilities.FormBuilder.Interface;
 using Finance.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using Pluto.ViewModels;
 using Pluto.Views;
 using System.Windows;
 
@@ -29,11 +28,6 @@ namespace Pluto
             services.AddSingleton<MainView>(provider => new MainView
             {
                 DataContext = provider.GetRequiredService<MainViewModel>()
-            });
-
-            services.AddSingleton<MenuView>(provider => new MenuView
-            {
-                DataContext = provider.GetRequiredService<MenuViewModel>()
             });
 
             services.AddSingleton<MenuViewModel>();
