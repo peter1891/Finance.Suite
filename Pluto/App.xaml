@@ -19,6 +19,13 @@
             <DataTemplate DataType="{x:Type TypeName=vm:TransactionsViewModel}">
                 <v:TransactionsView/>
             </DataTemplate>
+
+            <ResourceDictionary.MergedDictionaries>
+                
+                <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/DataGrid.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/TextBox.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
             
         </ResourceDictionary>
          

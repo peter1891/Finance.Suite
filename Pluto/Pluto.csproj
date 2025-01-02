@@ -26,6 +26,7 @@
     <ProjectReference Include="..\Finance.Models\Finance.Models.csproj" />
     <ProjectReference Include="..\Finance.Repository\Finance.Repository.csproj" />
     <ProjectReference Include="..\Finance.Services\Finance.Services.csproj" />
+    <ProjectReference Include="..\Finance.Styles\Finance.Styles.csproj" />
     <ProjectReference Include="..\Finance.Utilities\Finance.Utilities.csproj" />
     <ProjectReference Include="..\Finance.ViewModels\Finance.ViewModels.csproj" />
   </ItemGroup>
