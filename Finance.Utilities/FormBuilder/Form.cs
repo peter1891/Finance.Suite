@@ -2,12 +2,13 @@
 using Finance.Utilities.FormBuilder.Interface;
 using System.Windows.Controls;
 using System.Windows.Data;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Finance.Utilities.FormBuilder
 {
-    public class Form : IForm
+    public class Form : ObservableObject, IForm
     {
+        private string _title;
+
         private Grid _grid;
         private Button _submitButton;
         private Button _cancelButton;
@@ -38,6 +39,11 @@ namespace Finance.Utilities.FormBuilder
         public RelayCommand GetSubmitCommand()
         {
             return _submitButtonCommand;
+        }
+
+        public string GetTitle()
+        {
+            return _title;
         }
 
         public void SetCancelButton(string content)
@@ -77,6 +83,11 @@ namespace Finance.Utilities.FormBuilder
         public void SetSubmitCommand(RelayCommand relayCommand)
         {
             _submitButtonCommand = relayCommand;
+        }
+
+        public void SetTitle(string title)
+        {
+            _title = title;
         }
     }
 }
