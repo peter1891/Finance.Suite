@@ -7,6 +7,10 @@ using Finance.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Pluto.Views;
 using System.Windows;
+using Finance.Repository.Interface.Models;
+using Finance.Repository.Repository.Models;
+using Finance.Utilities.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace Pluto
 {
@@ -25,19 +29,27 @@ namespace Pluto
 
         private void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlite("Data Source=PlutoDB.db;"));
+
             services.AddSingleton<MainView>(provider => new MainView
             {
                 DataContext = provider.GetRequiredService<MainViewModel>()
             });
 
-            services.AddSingleton<MenuViewModel>();
-            services.AddSingleton<FormViewModel>();
+            services.AddTransient<FormViewModel>();
             services.AddSingleton<MainViewModel>();
+
+            services.AddSingleton<AccountsViewModel>();
             services.AddSingleton<TransactionsViewModel>();
 
+            services.AddKeyedScoped<IFormBuilder, AccountFormBuilder>("account");
             services.AddKeyedScoped<IFormBuilder, TransactionFormBuilder>("transaction");
 
             services.AddSingleton<INavigationService, NavigationService>();
+
+            services.AddSingleton<IAccountRepository, AccountRepository>();
+            services.AddSingleton<ITransactionRepository, TransactionRepository>();
+            services.AddSingleton<IUserRepository, UserRepository>();
 
             services.AddSingleton<Func<Type, ViewModelBase>>(serviceProvider => viewModelType => (ViewModelBase)serviceProvider.GetRequiredService(viewModelType));
         }

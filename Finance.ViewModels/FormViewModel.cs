@@ -13,29 +13,24 @@ namespace Finance.ViewModels
         private readonly IServiceProvider _serviceProvider;
         private readonly INavigationService _navigationService;
 
+        private IFormBuilder _iFormBuilder;
+        public IFormBuilder IFormBuilder
+        {
+            get { return _iFormBuilder; }
+            set
+            {
+                _iFormBuilder = value;
+                OnPropertyChanged(nameof(IFormBuilder));
+            }
+        }
+
         private Form _form;
 
-        private Button _submitButton;
-        public Button SubmitButton
-        { 
-            get { return _submitButton; } 
-            set
-            {
-                _submitButton = value;
-                OnPropertyChanged(nameof(SubmitButton));
-            }
-        }
+        public string Title { get; set; }
 
-        private Button _cancelButton;
-        public Button CancelButton
-        {
-            get { return _cancelButton; }
-            set
-            {
-                _cancelButton = value;
-                OnPropertyChanged(nameof(CancelButton));
-            }
-        }
+        public Grid Grid { get; set; }
+        public Button SubmitButton { get; set; }
+        public Button CancelButton { get; set; }
 
         public ICommand ExecuteSubmitCommand { get; set; }
         public ICommand ExecuteCancelCommand { get; set; }
@@ -47,6 +42,9 @@ namespace Finance.ViewModels
 
             _form = _serviceProvider.GetKeyedService<IFormBuilder>(_navigationService.FormType).GetForm();
 
+            Title = _form.GetTitle();
+
+            this.Grid = _form.GetGrid();
             SubmitButton = _form.GetSubmitButton();
             CancelButton = _form.GetCancelButton();
 

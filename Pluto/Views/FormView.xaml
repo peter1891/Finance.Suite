@@ -5,10 +5,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Pluto.Views"
              mc:Ignorable="d">
-    
+
     <Grid>
 
-        <StackPanel Orientation="Horizontal">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0"
+               Content="{Binding Title}"/>
+
+        <ContentControl Grid.Row="1"
+                        Content="{Binding Grid}"/>
+
+        <StackPanel Grid.Row="2" 
+                    Orientation="Horizontal">
             
             <ContentControl Content="{Binding SubmitButton}"/>
 
