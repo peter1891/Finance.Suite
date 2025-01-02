@@ -9,15 +9,17 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0"
+               Grid.Row="0"
                Content="Accounts"
                FontSize="18"/>
 
@@ -25,6 +27,26 @@
                 Grid.Row="0"
                 Content="Toevoegen"
                 Command="{Binding NavigateAddCommand}"/>
+
+        <DataGrid Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  Grid.Row="1"
+                  ItemsSource="{Binding AccountModels}">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="ID"
+                                    Binding="{Binding Id}"/>
+
+                <DataGridTextColumn Header="Account Number"
+                                    Binding="{Binding AccountNumber}"/>
+
+                <DataGridTextColumn Header="Owner"
+                                    Binding="{Binding AccountNumber}"/>
+
+            </DataGrid.Columns>
+            
+        </DataGrid>
 
     </Grid>
 

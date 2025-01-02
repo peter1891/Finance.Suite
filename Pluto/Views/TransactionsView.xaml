@@ -15,7 +15,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0"
@@ -30,7 +30,26 @@
 
         <DataGrid Grid.Column="0"
                   Grid.ColumnSpan="2"
-                  Grid.Row="1"/>
+                  Grid.Row="1"
+                  ItemsSource="{Binding TransactionModels}">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Date"
+                                    Binding="{Binding Date}"/>
+
+                <DataGridTextColumn Header="Amount"
+                                    Binding="{Binding Amount}"/>
+
+                <DataGridTextColumn Header="Counter Party"
+                                    Binding="{Binding CounterParty}"/>
+
+                <DataGridTextColumn Header="Description"
+                                    Binding="{Binding Description}"/>
+
+            </DataGrid.Columns>
+            
+        </DataGrid>
 
     </Grid>
     

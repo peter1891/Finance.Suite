@@ -10,6 +10,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -20,7 +21,7 @@
         <ContentControl Grid.Row="1"
                         Content="{Binding Grid}"/>
 
-        <StackPanel Grid.Row="2" 
+        <StackPanel Grid.Row="3" 
                     Orientation="Horizontal">
             
             <ContentControl Content="{Binding SubmitButton}"/>
