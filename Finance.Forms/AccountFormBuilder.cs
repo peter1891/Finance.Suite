@@ -2,13 +2,14 @@
 using Finance.Services.Navigation.Interface;
 using Finance.Utilities.FormBuilder;
 using Finance.Utilities.FormBuilder.Base;
+using Finance.Utilities.FormBuilder.Fields;
 using Finance.Utilities.FormBuilder.Interface;
 using Finance.ViewModels;
 using System.Windows.Controls;
 
 namespace Finance.Forms
 {
-    public class AccountFormBuilder : FormBuilderBase, IFormBuilder
+    public class AccountFormBuilder : IFormBuilder
     {
         private readonly INavigationService _navigationService;
 
@@ -39,19 +40,13 @@ namespace Finance.Forms
 
         public void BuildForm()
         {
-            Grid grid = BuildGrid(this, 2);
+            GridField grid = new GridField(this, 2);
 
-            TextBlock accountNumberBlock = BuildTextBlockField("AccountNumber", 0);
-            grid.Children.Add(accountNumberBlock);
+            grid.Children.Add(new TextBlockField("AccountNumber", 0));
+            grid.Children.Add(new TextBoxField("AccountNumber", 0));
 
-            TextBox accountNumberBox = BuildTextBoxField("AccountNumber", 0);
-            grid.Children.Add(accountNumberBox);
-
-            TextBlock ownerBlock = BuildTextBlockField("Owner", 1);
-            grid.Children.Add(ownerBlock);
-
-            TextBox ownerBox = BuildTextBoxField("Owner", 1);
-            grid.Children.Add(ownerBox);
+            grid.Children.Add(new TextBlockField("Owner", 1));
+            grid.Children.Add(new TextBoxField("Owner", 1));
 
             _form.SetGrid(grid);
         }

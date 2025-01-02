@@ -3,20 +3,21 @@ using Finance.Repository.Interface.Models;
 using Finance.Services.Navigation.Interface;
 using Finance.Utilities.FormBuilder;
 using Finance.Utilities.FormBuilder.Base;
+using Finance.Utilities.FormBuilder.Fields;
 using Finance.Utilities.FormBuilder.Interface;
 using Finance.ViewModels;
 using System.Windows.Controls;
 
 namespace Finance.Forms
 {
-    public class TransactionFormBuilder : FormBuilderBase, IFormBuilder
+    public class TransactionFormBuilder : IFormBuilder
     {
         private readonly INavigationService _navigationService;
         private readonly ITransactionRepository _transactionRepository;
 
         private Form _form;
 
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Today;
         public double Amount { get; set; }
         public string Type {  get; set; }
         public string CounterParty { get; set; }
@@ -45,25 +46,16 @@ namespace Finance.Forms
 
         public void BuildForm()
         {
-            Grid grid = BuildGrid(this, 3);
+            Grid grid = new GridField(this, 3);
 
-            TextBlock dateBlock = BuildTextBlockField("Transaction date", 0);
-            grid.Children.Add(dateBlock);
+            grid.Children.Add(new TextBlockField("Transaction date", 0));
+            grid.Children.Add(new DatePickerField("Date", 0));
 
-            DatePicker datePicker = BuildDatePickerField(0);
-            grid.Children.Add(datePicker);
+            grid.Children.Add(new TextBlockField("Amount", 1));
+            grid.Children.Add(new TextBoxField("Amount", 1));
 
-            TextBlock amountBlock = BuildTextBlockField("Amount", 1);
-            grid.Children.Add(amountBlock);
-
-            TextBox amountBox = BuildTextBoxField("Amount", 1);
-            grid.Children.Add(amountBox);
-
-            TextBlock counterPartyBlock = BuildTextBlockField("Counter Party", 2);
-            grid.Children.Add(counterPartyBlock);
-
-            TextBox counterPartyBox = BuildTextBoxField("CounterParty", 2);
-            grid.Children.Add(counterPartyBox);
+            grid.Children.Add(new TextBlockField("Counter Party", 2));
+            grid.Children.Add(new TextBoxField("CounterParty", 2));
 
             _form.SetGrid(grid);
         }
