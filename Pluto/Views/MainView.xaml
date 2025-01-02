@@ -14,29 +14,24 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="0">
 
                 <RadioButton Content="Overview"
-                     Command="{Binding NavigateTransactionsCommand}"/>
+                             Command="{Binding NavigateTransactionsCommand}"/>
 
                 <RadioButton Content="Transactions"
-                     Command="{Binding NavigateTransactionsCommand}"/>
+                             Command="{Binding NavigateTransactionsCommand}"/>
 
                 <RadioButton Content="Accounts"
-                     Command="{Binding NavigateTransactionsCommand}"/>
+                             Command="{Binding NavigateAccountsCommand}"/>
 
             </StackPanel>
 
             <ContentControl Grid.Column="1"
-                    Content="{Binding NavigationService.CurrentView}"/>
+                            Content="{Binding NavigationService.CurrentView}"/>
 
         </Grid>
 

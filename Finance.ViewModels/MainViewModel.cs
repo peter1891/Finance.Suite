@@ -17,6 +17,7 @@ namespace Finance.ViewModels
             }
         }
 
+        public ICommand NavigateAccountsCommand { get; set; }
         public ICommand NavigateTransactionsCommand { get; set; }
 
         public MainViewModel(INavigationService navigationService)
@@ -24,22 +25,8 @@ namespace Finance.ViewModels
             NavigationService = navigationService;
             NavigationService.NavigateTo<TransactionsViewModel>();
 
+            NavigateAccountsCommand = new RelayCommand(obj => { _navigationService.NavigateTo<AccountsViewModel>(); }, obj => true);
             NavigateTransactionsCommand = new RelayCommand(obj => { _navigationService.NavigateTo<TransactionsViewModel>(); }, obj => true);
         }
-
-        //private readonly IServiceProvider _serviceProvider;
-
-        //private MenuView _menuView;
-
-        //public object CurrentView { get; set; }
-
-        //public MainViewModel(IServiceProvider serviceProvider)
-        //{
-        //    _serviceProvider = serviceProvider;
-
-        //    _menuView = _serviceProvider.GetRequiredService<MenuView>();
-
-        //    CurrentView = _menuView;
-        //}
     }
 }
