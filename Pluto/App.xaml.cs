@@ -42,8 +42,8 @@ namespace Pluto
             services.AddSingleton<AccountsViewModel>();
             services.AddSingleton<TransactionsViewModel>();
 
-            services.AddKeyedScoped<IFormBuilder, AccountFormBuilder>("account");
-            services.AddKeyedScoped<IFormBuilder, TransactionFormBuilder>("transaction");
+            services.AddKeyedTransient<IFormBuilder, AccountFormBuilder>("account");
+            services.AddKeyedTransient<IFormBuilder, TransactionFormBuilder>("transaction");
 
             services.AddSingleton<INavigationService, NavigationService>();
 
