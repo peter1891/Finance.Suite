@@ -1,13 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style TargetType="DataGrid">
+    <Style TargetType="Button">
 
         <Setter Property="Margin"
-                Value="10"/>
-
-        <Setter Property="AutoGenerateColumns"
-                Value="False"/>
+                Value="10,5"/>
 
     </Style>
     

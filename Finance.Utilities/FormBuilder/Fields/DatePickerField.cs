@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace Finance.Utilities.FormBuilder.Fields
@@ -7,6 +8,8 @@ namespace Finance.Utilities.FormBuilder.Fields
     {
         public DatePickerField(string binding, int row)
         {
+            this.Style = (Style)Application.Current.Resources["DatePickerField"];
+
             this.SetBinding(DatePicker.SelectedDateProperty, new Binding(binding));
 
             Grid.SetColumn(this, 1);
