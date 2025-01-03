@@ -12,25 +12,39 @@
 
         <Grid>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="0">
+            <Grid>
 
-                <RadioButton Content="Overview"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Content="PLUTO"/>
+
+                <RadioButton Grid.Column="1" 
+                             Content="Dashboard"
+                             Command="{Binding NavigateDashboardCommand}"/>
+
+                <RadioButton Grid.Column="2" 
+                             Content="Transactions"
                              Command="{Binding NavigateTransactionsCommand}"/>
 
-                <RadioButton Content="Transactions"
-                             Command="{Binding NavigateTransactionsCommand}"/>
-
-                <RadioButton Content="Accounts"
+                <RadioButton Grid.Column="3" 
+                             Content="Accounts"
                              Command="{Binding NavigateAccountsCommand}"/>
 
-            </StackPanel>
+            </Grid>
 
-            <ContentControl Grid.Column="1"
+            <ContentControl Grid.Row="1"
                             Content="{Binding NavigationService.CurrentView}"/>
 
         </Grid>

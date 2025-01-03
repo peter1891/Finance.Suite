@@ -40,6 +40,7 @@ namespace Pluto
             services.AddSingleton<MainViewModel>();
 
             services.AddSingleton<AccountsViewModel>();
+            services.AddSingleton<DashboardViewModel>();
             services.AddSingleton<TransactionsViewModel>();
 
             services.AddKeyedTransient<IFormBuilder, AccountFormBuilder>("account");
