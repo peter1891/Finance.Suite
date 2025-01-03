@@ -32,6 +32,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/DatePicker.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/Label.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/RadioButton.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/TextBlock.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/TextBox.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>

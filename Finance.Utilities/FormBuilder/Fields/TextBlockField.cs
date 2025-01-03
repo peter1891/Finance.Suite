@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Finance.Utilities.FormBuilder.Fields
 {
@@ -6,6 +7,8 @@ namespace Finance.Utilities.FormBuilder.Fields
     {
         public TextBlockField(string text, int row)
         {
+            this.Style = (Style)Application.Current.Resources["TextBlockField"];
+
             this.Text = text;
 
             Grid.SetColumn(this, 0);
