@@ -9,8 +9,8 @@ namespace Finance.Utilities.FormBuilder.Fields
         {
             this.DataContext = dataContext;
 
-            this.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(170) });
-            this.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength() });
+            this.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(200) });
+            this.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(200) });
 
             for (int i = 0; i < rows; i++)
                 this.RowDefinitions.Add(new RowDefinition());

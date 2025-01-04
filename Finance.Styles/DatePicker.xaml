@@ -6,11 +6,8 @@
         <Setter Property="Margin"
                 Value="10,5"/>
 
-        <Setter Property="Width"
-                Value="150"/>
-
         <Setter Property="HorizontalAlignment"
-                Value="Left"/>
+                Value="Stretch"/>
 
     </Style>
 

@@ -32,6 +32,7 @@
 
                 <RadioButton Grid.Column="1" 
                              Content="Dashboard"
+                             IsChecked="True"
                              Command="{Binding NavigateDashboardCommand}"/>
 
                 <RadioButton Grid.Column="2" 

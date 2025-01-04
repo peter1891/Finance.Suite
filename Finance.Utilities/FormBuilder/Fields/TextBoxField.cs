@@ -10,7 +10,10 @@ namespace Finance.Utilities.FormBuilder.Fields
         {
             this.Style = (Style)Application.Current.Resources["TextBoxField"];
 
-            this.SetBinding(TextBox.TextProperty, new Binding(binding));
+            this.SetBinding(TextBox.TextProperty, new Binding(binding)
+            {
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+            });
 
             Grid.SetColumn(this, 1);
             Grid.SetRow(this, row);
