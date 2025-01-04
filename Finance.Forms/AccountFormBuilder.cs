@@ -1,4 +1,6 @@
 ﻿using Finance.Core;
+using Finance.Models;
+using Finance.Repository.Interface.Models;
 using Finance.Services.Navigation.Interface;
 using Finance.Utilities.FormBuilder;
 using Finance.Utilities.FormBuilder.Fields;
@@ -7,18 +9,42 @@ using Finance.ViewModels;
 
 namespace Finance.Forms
 {
-    public class AccountFormBuilder : IFormBuilder
+    public class AccountFormBuilder : FormBuilderBase, IFormBuilder
     {
         private readonly INavigationService _navigationService;
+        private readonly IAccountRepository _accountRepository;
 
         private Form _form;
 
-        public string AccountNumber { get; set; }
-        public string Owner { get; set; }
+        private string _accountNumber;
+        public string AccountNumber 
+        { 
+            get { return _accountNumber; }
+            set
+            {
+                _accountNumber = value;
+                Validate(nameof(AccountNumber), _accountNumber, submitRelayCommand);
+            }
+        }
 
-        public AccountFormBuilder(INavigationService navigationService)
+        private string _owner;
+        public string Owner 
+        { 
+            get { return _owner; }
+            set
+            {
+                _owner = value;
+                Validate(nameof(Owner), _owner, submitRelayCommand);
+            }
+        }
+
+        private RelayCommand cancelRelayCommand;
+        private RelayCommand submitRelayCommand;
+
+        public AccountFormBuilder(INavigationService navigationService, IAccountRepository accountRepository)
         {
             _navigationService = navigationService;
+            _accountRepository = accountRepository;
 
             _form = new Form();
 
@@ -30,7 +56,7 @@ namespace Finance.Forms
 
         public void BuildCancelButton()
         {
-            RelayCommand cancelRelayCommand = new RelayCommand(obj => { _navigationService.NavigateTo<AccountsViewModel>(); }, obj => true);
+            cancelRelayCommand = new RelayCommand(obj => { _navigationService.NavigateTo<AccountsViewModel>(); }, obj => true);
 
             _form.SetCancelButton("Cancel");
             _form.SetCancelCommand(cancelRelayCommand);
@@ -51,7 +77,25 @@ namespace Finance.Forms
 
         public void BuildSubmitButton()
         {
-            RelayCommand submitRelayCommand = new RelayCommand(obj => { _navigationService.NavigateTo<AccountsViewModel>(); }, obj => true);
+            submitRelayCommand = new RelayCommand(obj => 
+            {
+                AccountModel accountModel = new AccountModel()
+                {
+                    AccountNumber = this.AccountNumber,
+                    Owner = this.Owner,
+                };
+
+                _accountRepository.AddAsync(accountModel);
+
+                _navigationService.NavigateTo<AccountsViewModel>(); 
+            }, obj => 
+            {
+                if (!string.IsNullOrWhiteSpace(AccountNumber) &&
+                !string.IsNullOrWhiteSpace(Owner))
+                    return true;
+
+                return false;
+             });
 
             _form.SetSubmitButton("Submit");
             _form.SetSubmitCommand(submitRelayCommand);

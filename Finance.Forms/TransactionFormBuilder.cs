@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace Finance.Forms
 {
-    public class TransactionFormBuilder : IFormBuilder
+    public class TransactionFormBuilder : FormBuilderBase, IFormBuilder
     {
         private readonly INavigationService _navigationService;
         private readonly ITransactionRepository _transactionRepository;
