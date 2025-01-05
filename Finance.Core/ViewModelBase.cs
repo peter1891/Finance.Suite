@@ -6,7 +6,6 @@ namespace Finance.Core
 {
     public abstract class ViewModelBase : ObservableObject, INotifyDataErrorInfo
     {
-        // Error handling using INotifyDataErrorInfo
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
         public bool HasErrors => Errors.Count > 0;

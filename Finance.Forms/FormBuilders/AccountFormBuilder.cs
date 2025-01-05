@@ -77,7 +77,7 @@ namespace Finance.Forms.FormBuilders
 
         public void BuildSubmitButton()
         {
-            submitRelayCommand = new RelayCommand(obj =>
+            submitRelayCommand = new RelayCommand( async obj =>
             {
                 AccountModel accountModel = new AccountModel()
                 {
@@ -85,7 +85,7 @@ namespace Finance.Forms.FormBuilders
                     Owner = Owner,
                 };
 
-                _accountRepository.AddAsync(accountModel);
+                await _accountRepository.AddAsync(accountModel);
 
                 _navigationService.NavigateTo<AccountsViewModel>();
             }, obj =>

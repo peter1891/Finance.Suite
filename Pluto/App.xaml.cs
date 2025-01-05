@@ -1,9 +1,6 @@
-﻿using Finance.Core;
-using Finance.Services.Navigation;
+﻿using Finance.Services.Navigation;
 using Finance.Services.Navigation.Interface;
-using Finance.Forms;
 using Finance.Utilities.FormBuilder.Interface;
-using Finance.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Pluto.Views;
 using System.Windows;
@@ -11,6 +8,9 @@ using Finance.Repository.Interface.Models;
 using Finance.Repository.Repository.Models;
 using Finance.Utilities.Database;
 using Microsoft.EntityFrameworkCore;
+using Finance.Core;
+using Finance.Forms.FormBuilders;
+using Finance.ViewModels;
 
 namespace Pluto
 {

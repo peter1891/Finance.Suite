@@ -31,4 +31,10 @@
     <ProjectReference Include="..\Finance.ViewModels\Finance.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="PlutoDb.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
