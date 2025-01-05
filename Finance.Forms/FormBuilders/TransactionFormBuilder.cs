@@ -7,7 +7,7 @@ using Finance.Utilities.FormBuilder.Interface;
 using Finance.ViewModels;
 using System.Windows.Controls;
 
-namespace Finance.Forms
+namespace Finance.Forms.FormBuilders
 {
     public class TransactionFormBuilder : FormBuilderBase, IFormBuilder
     {
@@ -18,7 +18,7 @@ namespace Finance.Forms
 
         public DateTime Date { get; set; } = DateTime.Today;
         public double Amount { get; set; }
-        public string Type {  get; set; }
+        public string Type { get; set; }
         public string CounterParty { get; set; }
         public string Description { get; set; }
 
@@ -61,13 +61,13 @@ namespace Finance.Forms
 
         public void BuildSubmitButton()
         {
-            RelayCommand submitRelayCommand = new RelayCommand(obj => 
-            { 
+            RelayCommand submitRelayCommand = new RelayCommand(obj =>
+            {
                 // Data ophalen uit het form
 
                 // Data opslaan in de SQLite DB
 
-                _navigationService.NavigateTo<TransactionsViewModel>(); 
+                _navigationService.NavigateTo<TransactionsViewModel>();
             }, obj => true);
 
             _form.SetSubmitButton("Submit");

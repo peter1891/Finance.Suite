@@ -7,7 +7,7 @@ using Finance.Utilities.FormBuilder.Fields;
 using Finance.Utilities.FormBuilder.Interface;
 using Finance.ViewModels;
 
-namespace Finance.Forms
+namespace Finance.Forms.FormBuilders
 {
     public class AccountFormBuilder : FormBuilderBase, IFormBuilder
     {
@@ -17,8 +17,8 @@ namespace Finance.Forms
         private Form _form;
 
         private string _accountNumber;
-        public string AccountNumber 
-        { 
+        public string AccountNumber
+        {
             get { return _accountNumber; }
             set
             {
@@ -28,8 +28,8 @@ namespace Finance.Forms
         }
 
         private string _owner;
-        public string Owner 
-        { 
+        public string Owner
+        {
             get { return _owner; }
             set
             {
@@ -77,25 +77,25 @@ namespace Finance.Forms
 
         public void BuildSubmitButton()
         {
-            submitRelayCommand = new RelayCommand(obj => 
+            submitRelayCommand = new RelayCommand(obj =>
             {
                 AccountModel accountModel = new AccountModel()
                 {
-                    AccountNumber = this.AccountNumber,
-                    Owner = this.Owner,
+                    AccountNumber = AccountNumber,
+                    Owner = Owner,
                 };
 
                 _accountRepository.AddAsync(accountModel);
 
-                _navigationService.NavigateTo<AccountsViewModel>(); 
-            }, obj => 
+                _navigationService.NavigateTo<AccountsViewModel>();
+            }, obj =>
             {
                 if (!string.IsNullOrWhiteSpace(AccountNumber) &&
                 !string.IsNullOrWhiteSpace(Owner))
                     return true;
 
                 return false;
-             });
+            });
 
             _form.SetSubmitButton("Submit");
             _form.SetSubmitCommand(submitRelayCommand);
