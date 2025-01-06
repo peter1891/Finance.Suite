@@ -17,14 +17,14 @@ namespace Finance.ViewModels
             }
         }
 
-        public ICommand NavigateAccountsCommand { get; set; }
-        public ICommand NavigateDashboardCommand { get; set; }
-        public ICommand NavigateTransactionsCommand { get; set; }
+        public ICommand NavigateAccountsCommand { get; }
+        public ICommand NavigateDashboardCommand { get; }
+        public ICommand NavigateTransactionsCommand { get; }
 
         public MainViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
-            NavigationService.NavigateTo<DashboardViewModel>();
+            NavigationService.NavigateTo<LoginViewModel>();
 
             NavigateAccountsCommand = new RelayCommand(obj => { _navigationService.NavigateTo<AccountsViewModel>(); }, obj => true);
             NavigateDashboardCommand = new RelayCommand(obj => { _navigationService.NavigateTo<DashboardViewModel>(); }, obj => true);

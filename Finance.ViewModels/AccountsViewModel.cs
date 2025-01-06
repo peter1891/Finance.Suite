@@ -14,7 +14,7 @@ namespace Finance.ViewModels
 
         public ObservableCollection<AccountModel> AccountModels { get; set; } = new ObservableCollection<AccountModel>();
 
-        public ICommand NavigateAddCommand { get; set; }
+        public ICommand NavigateAddCommand { get; }
 
         public AccountsViewModel(INavigationService navigationService, IAccountRepository accountRepository)
         {

@@ -32,8 +32,8 @@ namespace Finance.ViewModels
         public Button SubmitButton { get; set; }
         public Button CancelButton { get; set; }
 
-        public ICommand ExecuteSubmitCommand { get; set; }
-        public ICommand ExecuteCancelCommand { get; set; }
+        public ICommand ExecuteSubmitCommand { get; }
+        public ICommand ExecuteCancelCommand { get; }
 
         public FormViewModel(IServiceProvider serviceProvider, INavigationService navigationService) 
         {
