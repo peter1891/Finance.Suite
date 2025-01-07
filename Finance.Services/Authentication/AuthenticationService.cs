@@ -28,15 +28,27 @@ namespace Finance.Services.Authentication
         }
 
         private bool _isAuthenticated;
-
-        public bool IsAuthenticated()
+        public bool IsAuthenticated
         {
-            return _isAuthenticated;
+            get { return _isAuthenticated; }
+            set
+            {
+                _isAuthenticated = value;
+                OnPropertyChanged(nameof(IsAuthenticated));
+            }
         }
 
-        public void SetAuthentication(bool authenticate)
+        public void Login(Tuple<string, string> model)
         {
-            _isAuthenticated = authenticate;
+            User = model.Item1;
+            Email = model.Item2;
+
+            IsAuthenticated = true;
+        }
+
+        public void Logout()
+        {
+            IsAuthenticated = false;
         }
     }
 }

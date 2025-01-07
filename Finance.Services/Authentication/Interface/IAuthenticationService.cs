@@ -4,8 +4,9 @@
     {
         string User {  get; }
         string Email { get; }
+        bool IsAuthenticated { get; }
 
-        void SetAuthentication(bool authenticate);
-        bool IsAuthenticated();
+        void Login(Tuple<string, string> model);
+        void Logout();
     }
 }
