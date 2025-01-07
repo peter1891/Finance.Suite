@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Finance.Core;
 using Finance.Forms.FormBuilders;
 using Finance.ViewModels;
+using Finance.Services.Authentication.Interface;
+using Finance.Services.Authentication;
 
 namespace Pluto
 {
@@ -41,11 +43,13 @@ namespace Pluto
 
             services.AddSingleton<AccountsViewModel>();
             services.AddSingleton<DashboardViewModel>();
+            services.AddSingleton<LoginViewModel>();
             services.AddSingleton<TransactionsViewModel>();
 
             services.AddKeyedTransient<IFormBuilder, AccountFormBuilder>("account");
             services.AddKeyedTransient<IFormBuilder, TransactionFormBuilder>("transaction");
 
+            services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<INavigationService, NavigationService>();
 
             services.AddSingleton<IAccountRepository, AccountRepository>();
