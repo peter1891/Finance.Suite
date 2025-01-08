@@ -7,7 +7,7 @@ namespace Finance.Utilities.Encoder
 {
     public class PasswordEncoder : IPasswordEncoder
     {
-        public string GetHashPassword(SecureString secureString, byte[] salt)
+        public string GetHashPassword(SecureString secureString)
         {
             IntPtr ptr = IntPtr.Zero;
             try
@@ -16,6 +16,8 @@ namespace Finance.Utilities.Encoder
                 string password = Marshal.PtrToStringUni(ptr);
 
                 byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
+
+                byte[] salt = System.Text.Encoding.UTF8.GetBytes("2PluT0!");
 
                 byte[] passwordWithSalt = new byte[passwordBytes.Length + salt.Length];
                 Buffer.BlockCopy(salt, 0, passwordWithSalt, 0, salt.Length);
@@ -33,15 +35,6 @@ namespace Finance.Utilities.Encoder
                 if (ptr != IntPtr.Zero)
                     Marshal.ZeroFreeGlobalAllocUnicode(ptr);
             }
-        }
-
-        public byte[] GetSalt()
-        {
-            byte[] salt = new byte[16];
-            using (var rng = RandomNumberGenerator.Create())
-                rng.GetBytes(salt);
-
-            return salt;
         }
     }
 }
