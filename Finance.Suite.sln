@@ -17,11 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Utilities", "Financ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Repository", "Finance.Repository\Finance.Repository.csproj", "{913DE288-8C2E-483B-AC99-E3EAB63EC50F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.ViewModels", "Finance.ViewModels\Finance.ViewModels.csproj", "{30580AF9-1382-4238-9330-E6F586797AC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.ViewModels", "Finance.ViewModels\Finance.ViewModels.csproj", "{30580AF9-1382-4238-9330-E6F586797AC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Forms", "Finance.Forms\Finance.Forms.csproj", "{5D0CA231-6B5A-46FC-B62B-629D7BF03675}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Forms", "Finance.Forms\Finance.Forms.csproj", "{5D0CA231-6B5A-46FC-B62B-629D7BF03675}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Styles", "Finance.Styles\Finance.Styles.csproj", "{0C4AE2E8-5B7C-4DE4-A764-B2A2AD22E04E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance.Styles", "Finance.Styles\Finance.Styles.csproj", "{0C4AE2E8-5B7C-4DE4-A764-B2A2AD22E04E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.CustomControls", "Finance.CustomControls\Finance.CustomControls.csproj", "{C6EBCCF4-C6AE-41E8-A81B-3C79EA776622}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{0C4AE2E8-5B7C-4DE4-A764-B2A2AD22E04E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C4AE2E8-5B7C-4DE4-A764-B2A2AD22E04E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C4AE2E8-5B7C-4DE4-A764-B2A2AD22E04E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6EBCCF4-C6AE-41E8-A81B-3C79EA776622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6EBCCF4-C6AE-41E8-A81B-3C79EA776622}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6EBCCF4-C6AE-41E8-A81B-3C79EA776622}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6EBCCF4-C6AE-41E8-A81B-3C79EA776622}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{30580AF9-1382-4238-9330-E6F586797AC9} = {DC097951-FA75-4DC6-8A16-A62130996393}
 		{5D0CA231-6B5A-46FC-B62B-629D7BF03675} = {DC097951-FA75-4DC6-8A16-A62130996393}
 		{0C4AE2E8-5B7C-4DE4-A764-B2A2AD22E04E} = {DC097951-FA75-4DC6-8A16-A62130996393}
+		{C6EBCCF4-C6AE-41E8-A81B-3C79EA776622} = {DC097951-FA75-4DC6-8A16-A62130996393}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF6E6EF6-F53F-407C-8226-D57FC775DC00}
