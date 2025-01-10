@@ -20,6 +20,10 @@
                 <v:FormView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type TypeName=vm:LoginViewModel}">
+                <v:LoginView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type TypeName=vm:TransactionsViewModel}">
                 <v:TransactionsView/>
             </DataTemplate>
@@ -31,6 +35,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/DataGrid.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/DatePicker.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/Label.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/PasswordBox.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/RadioButton.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/TextBlock.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/TextBox.xaml"/>

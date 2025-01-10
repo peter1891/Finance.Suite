@@ -5,13 +5,13 @@ namespace Finance.Utilities.Database
 {
     public class DatabaseContext : DbContext
     {
-        private static string connectionString = @"Data Source=PlutoDb.db;";
+        //private static string connectionString = @"Data Source=PlutoDb.db;";
 
         public DbSet<AccountModel> AccountModels { get; set; }
         public DbSet<TransactionModel> TransactionModels { get; set; }
         public DbSet<UserModel> UserModels { get; set; }
 
-        public DatabaseContext() { }
+        //public DatabaseContext() { }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> dbContextOptions)
             : base(dbContextOptions)
@@ -19,10 +19,10 @@ namespace Finance.Utilities.Database
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite(connectionString);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlite(connectionString);
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

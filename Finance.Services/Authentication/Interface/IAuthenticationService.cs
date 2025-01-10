@@ -1,12 +1,13 @@
-﻿namespace Finance.Services.Authentication.Interface
+﻿using Finance.Models;
+
+namespace Finance.Services.Authentication.Interface
 {
     public interface IAuthenticationService
     {
-        string User {  get; }
-        string Email { get; }
+        UserModel UserModel {  get; }
         bool IsAuthenticated { get; }
 
-        void Login(Tuple<string, string> model);
+        void Login(UserModel userModel);
         void Logout();
     }
 }

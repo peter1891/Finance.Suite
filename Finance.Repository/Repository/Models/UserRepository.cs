@@ -20,12 +20,10 @@ namespace Finance.Repository.Repository.Models
                 .AnyAsync(u => u.Email == networkCredential.UserName && u.Password == networkCredential.Password);
         }
 
-        public async Task<Tuple<string, string>> GetUserAsync(NetworkCredential networkCredential)
+        public async Task<UserModel> GetUserAsync(NetworkCredential networkCredential)
         {
-            UserModel userModel = await DatabaseContext.UserModels
+            return await DatabaseContext.UserModels
                 .FirstOrDefaultAsync(u => u.Email == networkCredential.UserName && u.Password == networkCredential.Password);
-
-            return new Tuple<string, string>(userModel.Name, userModel.Email);
         }
 
         public DatabaseContext DatabaseContext

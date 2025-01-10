@@ -1,29 +1,30 @@
 ﻿using Finance.Core;
+using Finance.Models;
 using Finance.Services.Authentication.Interface;
 
 namespace Finance.Services.Authentication
 {
     public class AuthenticationService : ObservableObject, IAuthenticationService
     {
-        private string _user;
-        public string User
+        private string _buttonText;
+        public string ButtonText
         {
-            get { return _user; }
+            get { return _buttonText; }
             set
-            { 
-                _user = value;
-                OnPropertyChanged(nameof(User));
+            {
+                _buttonText = value;
+                OnPropertyChanged(nameof(ButtonText));
             }
         }
 
-        private string _email;
-        public string Email
+        private UserModel _userModel;
+        public UserModel UserModel
         {
-            get { return _email; }
+            get { return _userModel; }
             set
             {
-                _email = value;
-                OnPropertyChanged(nameof(Email));
+                _userModel = value;
+                OnPropertyChanged(nameof(UserModel));
             }
         }
 
@@ -38,16 +39,24 @@ namespace Finance.Services.Authentication
             }
         }
 
-        public void Login(Tuple<string, string> model)
+        public AuthenticationService()
         {
-            User = model.Item1;
-            Email = model.Item2;
+            ButtonText = "Sign in";
+        }
 
+        public void Login(UserModel userModel)
+        {
+            this.UserModel = userModel;
+
+            ButtonText = this.UserModel.Name;
             IsAuthenticated = true;
         }
 
         public void Logout()
         {
+            this.UserModel = null;
+
+            ButtonText = "Sign in";
             IsAuthenticated = false;
         }
     }

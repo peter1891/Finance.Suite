@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Finance.Core\Finance.Core.csproj" />
+    <ProjectReference Include="..\Finance.CustomControls\Finance.CustomControls.csproj" />
     <ProjectReference Include="..\Finance.Forms\Finance.Forms.csproj" />
     <ProjectReference Include="..\Finance.Models\Finance.Models.csproj" />
     <ProjectReference Include="..\Finance.Repository\Finance.Repository.csproj" />
