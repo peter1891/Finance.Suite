@@ -1,6 +1,8 @@
 ﻿using Finance.Core;
 using Finance.Models;
 using Finance.Repository.Interface.Models;
+using Finance.Services.Authentication;
+using Finance.Services.Authentication.Interface;
 using Finance.Services.Navigation.Interface;
 using Finance.Utilities.FormBuilder;
 using Finance.Utilities.FormBuilder.Fields;
@@ -11,6 +13,7 @@ namespace Finance.Forms.FormBuilders
 {
     public class AccountFormBuilder : FormBuilderBase, IFormBuilder
     {
+        private readonly IAuthenticationService _authenticationService;
         private readonly INavigationService _navigationService;
         private readonly IAccountRepository _accountRepository;
 
@@ -41,8 +44,9 @@ namespace Finance.Forms.FormBuilders
         private RelayCommand cancelRelayCommand;
         private RelayCommand submitRelayCommand;
 
-        public AccountFormBuilder(INavigationService navigationService, IAccountRepository accountRepository)
+        public AccountFormBuilder(IAuthenticationService authenticationService, INavigationService navigationService, IAccountRepository accountRepository)
         {
+            _authenticationService = authenticationService;
             _navigationService = navigationService;
             _accountRepository = accountRepository;
 
@@ -83,6 +87,7 @@ namespace Finance.Forms.FormBuilders
                 {
                     AccountNumber = AccountNumber,
                     Owner = Owner,
+                    User = _authenticationService.UserModel,
                 };
 
                 await _accountRepository.AddAsync(accountModel);

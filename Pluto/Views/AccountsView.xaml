@@ -32,7 +32,7 @@
         <DataGrid Grid.Column="0"
                   Grid.ColumnSpan="2"
                   Grid.Row="2"
-                  ItemsSource="{Binding AccountModels}">
+                  ItemsSource="{Binding AuthenticationService.UserModel.Accounts}">
 
             <DataGrid.Columns>
 
@@ -43,7 +43,7 @@
                                     Binding="{Binding AccountNumber}"/>
 
                 <DataGridTextColumn Header="Owner"
-                                    Binding="{Binding AccountNumber}"/>
+                                    Binding="{Binding Owner}"/>
 
             </DataGrid.Columns>
             
