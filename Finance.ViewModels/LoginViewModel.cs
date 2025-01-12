@@ -58,6 +58,7 @@ namespace Finance.ViewModels
         }
 
         public ICommand ExecuteLoginCommand { get; }
+        public ICommand ExecuteRegisterCommand {  get; }
 
         public LoginViewModel(
             IAuthenticationService authenticationService, 
@@ -72,12 +73,16 @@ namespace Finance.ViewModels
             _passwordEncoder = passwordEncoder;
 
             ExecuteLoginCommand = new RelayCommand(ExecuteLogin, CanExecuteLogin);
+            ExecuteRegisterCommand = new RelayCommand(obj => _navigationService.NavigateTo<FormViewModel>("register"), obj => true);
         }
 
         private bool CanExecuteLogin(object obj)
         {
             if (!String.IsNullOrWhiteSpace(Email) && Password != null)
-                return true;
+            {
+                if (Password.Length > 0)
+                    return true;
+            }
 
             return false;
         }

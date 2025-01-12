@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Finance.Utilities.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20250107202724_UserModel_V1_1")]
-    partial class UserModel_V1_1
+    [Migration("20250110222659_UserModel_V2")]
+    partial class UserModel_V2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,7 +85,11 @@ namespace Finance.Utilities.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

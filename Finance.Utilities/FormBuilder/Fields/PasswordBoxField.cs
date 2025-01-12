@@ -5,19 +5,26 @@ using System.Windows;
 
 namespace Finance.Utilities.FormBuilder.Fields
 {
-    public class PasswordBoxField : BindablePasswordBox
+    public class PasswordBoxField
     {
+        private readonly BindablePasswordBox _passwordBox;
+
+        public BindablePasswordBox PasswordBox => _passwordBox;
+
         public PasswordBoxField(string binding, int row)
         {
-            this.Style = (Style)Application.Current.Resources["PasswordBoxField"];
+            _passwordBox = new BindablePasswordBox();
 
-            this.SetBinding(BindablePasswordBox.dependencyProperty, new Binding(binding)
+            _passwordBox.Style = (Style)Application.Current.Resources["PasswordBoxField"];
+
+            _passwordBox.SetBinding(BindablePasswordBox.PasswordProperty, new Binding(binding)
             {
+                Mode = BindingMode.TwoWay,
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
             });
 
-            Grid.SetColumn(this, 1);
-            Grid.SetRow(this, row);
+            Grid.SetColumn(_passwordBox, 1);
+            Grid.SetRow(_passwordBox, row);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace Finance.Services.Authentication
         {
             this.UserModel = userModel;
 
-            ButtonText = this.UserModel.Name;
+            ButtonText = this.UserModel.FirstName;
             IsAuthenticated = true;
         }
 

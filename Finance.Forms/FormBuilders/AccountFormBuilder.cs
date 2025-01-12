@@ -26,7 +26,7 @@ namespace Finance.Forms.FormBuilders
             set
             {
                 _accountNumber = value;
-                Validate(nameof(AccountNumber), _accountNumber, submitRelayCommand);
+                Validate(nameof(AccountNumber), _accountNumber, _submitRelayCommand);
             }
         }
 
@@ -37,14 +37,17 @@ namespace Finance.Forms.FormBuilders
             set
             {
                 _owner = value;
-                Validate(nameof(Owner), _owner, submitRelayCommand);
+                Validate(nameof(Owner), _owner, _submitRelayCommand);
             }
         }
 
-        private RelayCommand cancelRelayCommand;
-        private RelayCommand submitRelayCommand;
+        private RelayCommand _cancelRelayCommand;
+        private RelayCommand _submitRelayCommand;
 
-        public AccountFormBuilder(IAuthenticationService authenticationService, INavigationService navigationService, IAccountRepository accountRepository)
+        public AccountFormBuilder(
+            IAuthenticationService authenticationService, 
+            INavigationService navigationService, 
+            IAccountRepository accountRepository)
         {
             _authenticationService = authenticationService;
             _navigationService = navigationService;
@@ -60,17 +63,17 @@ namespace Finance.Forms.FormBuilders
 
         public void BuildCancelButton()
         {
-            cancelRelayCommand = new RelayCommand(obj => { _navigationService.NavigateTo<AccountsViewModel>(); }, obj => true);
+            _cancelRelayCommand = new RelayCommand(obj => { _navigationService.NavigateTo<AccountsViewModel>(); }, obj => true);
 
             _form.SetCancelButton("Cancel");
-            _form.SetCancelCommand(cancelRelayCommand);
+            _form.SetCancelCommand(_cancelRelayCommand);
         }
 
         public void BuildForm()
         {
             GridField grid = new GridField(this, 2);
 
-            grid.Children.Add(new TextBlockField("AccountNumber", 0));
+            grid.Children.Add(new TextBlockField("Account number", 0));
             grid.Children.Add(new TextBoxField("AccountNumber", 0));
 
             grid.Children.Add(new TextBlockField("Owner", 1));
@@ -81,7 +84,7 @@ namespace Finance.Forms.FormBuilders
 
         public void BuildSubmitButton()
         {
-            submitRelayCommand = new RelayCommand( async obj =>
+            _submitRelayCommand = new RelayCommand( async obj =>
             {
                 AccountModel accountModel = new AccountModel()
                 {
@@ -103,7 +106,7 @@ namespace Finance.Forms.FormBuilders
             });
 
             _form.SetSubmitButton("Submit");
-            _form.SetSubmitCommand(submitRelayCommand);
+            _form.SetSubmitCommand(_submitRelayCommand);
         }
 
         public void BuildTitle()

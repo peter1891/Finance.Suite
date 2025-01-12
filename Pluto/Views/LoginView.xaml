@@ -24,6 +24,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
 
@@ -62,6 +63,18 @@
                     Command="{Binding ExecuteLoginCommand}"/>
 
             <Button Content="Reset Password"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1"
+                    Grid.Row="8"
+                    Orientation="Horizontal">
+
+            <TextBlock Text="No account?"
+                       HorizontalAlignment="Left"/>
+
+            <Button Content="Register"
+                    Command="{Binding ExecuteRegisterCommand}"/>
 
         </StackPanel>
 

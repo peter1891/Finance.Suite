@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Finance.Core\Finance.Core.csproj" />
+    <ProjectReference Include="..\Finance.CustomControls\Finance.CustomControls.csproj" />
     <ProjectReference Include="..\Finance.Models\Finance.Models.csproj" />
     <ProjectReference Include="..\Finance.Services\Finance.Services.csproj" />
   </ItemGroup>

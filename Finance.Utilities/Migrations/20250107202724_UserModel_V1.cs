@@ -5,7 +5,7 @@
 namespace Finance.Utilities.Migrations
 {
     /// <inheritdoc />
-    public partial class UserModel_V1_1 : Migration
+    public partial class UserModel_V1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
