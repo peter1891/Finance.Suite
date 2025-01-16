@@ -22,6 +22,7 @@ namespace Finance.Utilities.Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(connectionString);
+            optionsBuilder.EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,7 +33,7 @@ namespace Finance.Utilities.Database
 
                 entity.HasMany(a => a.Transactions)
                 .WithOne(t => t.Account)
-                .HasForeignKey(t => t.Id);
+                .HasForeignKey(t => t.AccountId);
             });
 
             modelBuilder.Entity<TransactionModel>(entity =>

@@ -96,7 +96,7 @@ namespace Finance.ViewModels
             if (await _userRepository.AuthenticateUserAsync(networkCredential))
             {
                 UserModel userModel = await _userRepository.GetUserAsync(networkCredential);
-                _authenticationService.Login(userModel);
+                _authenticationService.Login(userModel.Id, userModel.FirstName);
 
                 _navigationService.NavigateTo<DashboardViewModel>();
             }

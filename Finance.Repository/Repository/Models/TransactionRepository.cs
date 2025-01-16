@@ -12,6 +12,12 @@ namespace Finance.Repository.Repository.Models
 
         }
 
+        public async Task AddTransactionsAsync(IEnumerable<TransactionModel> transactionModels)
+        {
+            await DatabaseContext.AddRangeAsync(transactionModels);
+            await DatabaseContext.SaveChangesAsync();
+        }
+
         public DatabaseContext DatabaseContext
         {
             get { return _context as DatabaseContext; }

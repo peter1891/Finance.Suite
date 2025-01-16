@@ -4,10 +4,10 @@ namespace Finance.Services.Authentication.Interface
 {
     public interface IAuthenticationService
     {
-        UserModel UserModel {  get; }
+        int UserId {  get; }
         bool IsAuthenticated { get; }
 
-        void Login(UserModel userModel);
+        void Login(int userId, string firstName);
         void Logout();
     }
 }

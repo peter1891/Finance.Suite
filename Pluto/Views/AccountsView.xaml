@@ -32,7 +32,7 @@
         <DataGrid Grid.Column="0"
                   Grid.ColumnSpan="2"
                   Grid.Row="2"
-                  ItemsSource="{Binding AuthenticationService.UserModel.Accounts}">
+                  ItemsSource="{Binding AccountModels}">
 
             <DataGrid.Columns>
 

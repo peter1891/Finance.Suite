@@ -15,6 +15,8 @@ using Finance.Services.Authentication.Interface;
 using Finance.Services.Authentication;
 using Finance.Utilities.Encoder.Interface;
 using Finance.Utilities.Encoder;
+using Finance.Strategy.TransactionStrategy;
+using Finance.Strategy.TransactionStrategy.Transactions;
 
 namespace Pluto
 {
@@ -43,10 +45,13 @@ namespace Pluto
             services.AddTransient<FormViewModel>();
             services.AddSingleton<MainViewModel>();
 
-            services.AddSingleton<AccountsViewModel>();
-            services.AddSingleton<DashboardViewModel>();
+            services.AddTransient<AccountsViewModel>();
+            services.AddTransient<DashboardViewModel>();
             services.AddSingleton<LoginViewModel>();
-            services.AddSingleton<TransactionsViewModel>();
+            services.AddTransient<TransactionsViewModel>();
+
+            services.AddSingleton<TransactionContext>();
+            services.AddSingleton<IngTransaction>();
 
             services.AddSingleton<IPasswordEncoder, PasswordEncoder>();
 

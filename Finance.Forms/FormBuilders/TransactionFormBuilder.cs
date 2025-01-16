@@ -1,5 +1,7 @@
 ﻿using Finance.Core;
+using Finance.Models;
 using Finance.Repository.Interface.Models;
+using Finance.Services.Authentication.Interface;
 using Finance.Services.Navigation.Interface;
 using Finance.Utilities.FormBuilder;
 using Finance.Utilities.FormBuilder.Fields;
@@ -11,23 +13,91 @@ namespace Finance.Forms.FormBuilders
 {
     public class TransactionFormBuilder : FormBuilderBase, IFormBuilder
     {
+        private IAuthenticationService _authenticationService;
+        public IAuthenticationService AuthenticationService
+        {
+            get => _authenticationService;
+            set
+            {
+                _authenticationService = value;
+                OnPropertyChanged(nameof(AuthenticationService));
+            }
+        }
+
         private readonly INavigationService _navigationService;
         private readonly ITransactionRepository _transactionRepository;
 
         private Form _form;
 
-        public DateTime Date { get; set; } = DateTime.Today;
-        public double Amount { get; set; }
-        public string Type { get; set; }
-        public string CounterParty { get; set; }
-        public string Description { get; set; }
-
-        public TransactionFormBuilder(INavigationService navigationService, ITransactionRepository transactionRepository)
+        private DateTime _date;
+        public DateTime Date
         {
+            get => _date;
+            set
+            {
+                _date = value;
+                OnPropertyChanged(nameof(Date));
+            }
+        }
+
+        private double _amount;
+        public double Amount 
+        { 
+            get => _amount; 
+            set
+            {
+                _amount = value;
+                OnPropertyChanged(nameof(Amount));
+            }
+        }
+
+        private string _type;
+        public string Type
+        {
+            get => _type;
+            set
+            {
+                _type = value;
+                OnPropertyChanged(nameof(Type));
+            }
+        }
+
+        private string _counterParty;
+        public string CounterParty
+        {
+            get => _counterParty;
+            set
+            {
+                _counterParty = value;
+                OnPropertyChanged(nameof(CounterParty));
+            }
+        }
+
+        private string _description;
+        public string Description
+        {
+            get => _description;
+            set
+            {
+                _description = value;
+                OnPropertyChanged(nameof(Description));
+            }
+        }
+
+        public AccountModel AccountModel { get; set; }
+
+        public TransactionFormBuilder(
+            IAuthenticationService authenticationService, 
+            INavigationService navigationService, 
+            ITransactionRepository transactionRepository)
+        {
+            AuthenticationService = authenticationService;
             _navigationService = navigationService;
             _transactionRepository = transactionRepository;
 
             _form = new Form();
+
+            this.Date = DateTime.Now;
 
             BuildTitle();
             BuildForm();
@@ -45,27 +115,38 @@ namespace Finance.Forms.FormBuilders
 
         public void BuildForm()
         {
-            Grid grid = new GridField(this, 3);
+            Grid grid = new GridField(this, 4);
 
-            grid.Children.Add(new TextBlockField("Transaction date", 0));
-            grid.Children.Add(new DatePickerField("Date", 0));
+            grid.Children.Add(new TextBlockField("Account", 0));
+            grid.Children.Add(new ComboBoxField("AuthenticationService.UserModel.Accounts", "AccountNumber", "AccountModel", 0));
 
-            grid.Children.Add(new TextBlockField("Amount", 1));
-            grid.Children.Add(new TextBoxField("Amount", 1));
+            grid.Children.Add(new TextBlockField("Transaction date", 1));
+            grid.Children.Add(new DatePickerField("Date", 1));
 
-            grid.Children.Add(new TextBlockField("Counter Party", 2));
-            grid.Children.Add(new TextBoxField("CounterParty", 2));
+            grid.Children.Add(new TextBlockField("Amount", 2));
+            grid.Children.Add(new TextBoxField("Amount", 2));
+
+            grid.Children.Add(new TextBlockField("Counter Party", 3));
+            grid.Children.Add(new TextBoxField("CounterParty", 3));
 
             _form.SetGrid(grid);
         }
 
         public void BuildSubmitButton()
         {
-            RelayCommand submitRelayCommand = new RelayCommand(obj =>
+            RelayCommand submitRelayCommand = new RelayCommand(async obj =>
             {
-                // Data ophalen uit het form
+                TransactionModel transactionModel = new TransactionModel()
+                {
+                    Date = this.Date,
+                    Amount = this.Amount,
+                    Type = this.Type,
+                    Account = this.AccountModel,
+                    CounterParty = this.CounterParty,
+                    Description = this.Description,
+                };
 
-                // Data opslaan in de SQLite DB
+                await _transactionRepository.AddAsync(transactionModel);
 
                 _navigationService.NavigateTo<TransactionsViewModel>();
             }, obj => true);

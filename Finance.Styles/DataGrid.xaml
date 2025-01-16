@@ -9,6 +9,12 @@
         <Setter Property="AutoGenerateColumns"
                 Value="False"/>
 
+        <Setter Property="CanUserAddRows"
+                Value="False"/>
+
+        <Setter Property="CanUserDeleteRows"
+                Value="False"/>
+
     </Style>
     
 </ResourceDictionary>

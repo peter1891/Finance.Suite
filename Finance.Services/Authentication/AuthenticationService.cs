@@ -17,14 +17,14 @@ namespace Finance.Services.Authentication
             }
         }
 
-        private UserModel _userModel;
-        public UserModel UserModel
+        private int _userId;
+        public int UserId
         {
-            get { return _userModel; }
+            get { return _userId; }
             set
             {
-                _userModel = value;
-                OnPropertyChanged(nameof(UserModel));
+                _userId = value;
+                OnPropertyChanged(nameof(UserId));
             }
         }
 
@@ -44,17 +44,17 @@ namespace Finance.Services.Authentication
             ButtonText = "Sign in";
         }
 
-        public void Login(UserModel userModel)
+        public void Login(int userId, string firstName)
         {
-            this.UserModel = userModel;
+            UserId = userId;
 
-            ButtonText = this.UserModel.FirstName;
+            ButtonText = firstName;
             IsAuthenticated = true;
         }
 
         public void Logout()
         {
-            this.UserModel = null;
+            UserId = 0;
 
             ButtonText = "Sign in";
             IsAuthenticated = false;

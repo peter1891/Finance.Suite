@@ -32,6 +32,7 @@
 
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/Border.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/Button.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/ComboBox.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/DataGrid.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/DatePicker.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/Label.xaml"/>

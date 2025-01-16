@@ -22,7 +22,7 @@ namespace Finance.Forms.FormBuilders
         private string _accountNumber;
         public string AccountNumber
         {
-            get { return _accountNumber; }
+            get => _accountNumber;
             set
             {
                 _accountNumber = value;
@@ -33,7 +33,7 @@ namespace Finance.Forms.FormBuilders
         private string _owner;
         public string Owner
         {
-            get { return _owner; }
+            get => _owner;
             set
             {
                 _owner = value;
@@ -90,7 +90,7 @@ namespace Finance.Forms.FormBuilders
                 {
                     AccountNumber = AccountNumber,
                     Owner = Owner,
-                    User = _authenticationService.UserModel,
+                    UserId = _authenticationService.UserId,
                 };
 
                 await _accountRepository.AddAsync(accountModel);
