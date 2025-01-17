@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Finance.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Finance.Models
 {
@@ -6,6 +7,7 @@ namespace Finance.Models
     public class AccountModel
     {
         public int Id { get; set; }
+        public Bank Bank { get; set; }
         public string AccountNumber { get; set; }
         public string Owner { get; set; }
 
