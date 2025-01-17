@@ -45,6 +45,30 @@
                 <DataGridTextColumn Header="Owner"
                                     Binding="{Binding Owner}"/>
 
+                <DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn.CellTemplate>
+
+                        <DataTemplate>
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <Button Content="Import"
+                                        Command="{Binding DataContext.NavigateImportCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding Id}"/>
+
+                                <Button Content="Edit"
+                                        Command="{Binding DataContext.NavigateEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding Id}"/>
+                                
+                            </StackPanel>
+
+                        </DataTemplate>
+                        
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
             
         </DataGrid>

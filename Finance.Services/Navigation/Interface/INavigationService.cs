@@ -7,7 +7,8 @@ namespace Finance.Services.Navigation.Interface
         ViewModelBase CurrentView { get; }
 
         string FormType { get; set; }
+        int EditId { get; set; }
 
-        void NavigateTo<T>(String formType = "null") where T : ViewModelBase;
+        void NavigateTo<T>(string formType = "null", int editId = 0) where T : ViewModelBase;
     }
 }

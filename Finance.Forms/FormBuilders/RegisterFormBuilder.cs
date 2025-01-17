@@ -165,7 +165,7 @@ namespace Finance.Forms.FormBuilders
             _form.SetTitle("Create Account");
         }
 
-        public Form GetForm()
+        public async Task<Form> GetFormAsync(int editId = 0)
         {
             return _form;
         }

@@ -1,4 +1,5 @@
 ﻿using Finance.Core;
+using Finance.Enums;
 using Finance.Models;
 using Finance.Repository.Interface.Models;
 using Finance.Services.Authentication;
@@ -18,6 +19,15 @@ namespace Finance.Forms.FormBuilders
         private readonly IAccountRepository _accountRepository;
 
         private Form _form;
+
+        public List<Bank> BankValues { get; set; } = new List<Bank>(Enum.GetValues(typeof(Bank)).Cast<Bank>().ToList());
+
+        private Bank _bank;
+        public Bank Bank
+        {
+            get => _bank;
+            set => _bank = value;
+        }
 
         private string _accountNumber;
         public string AccountNumber
@@ -40,6 +50,8 @@ namespace Finance.Forms.FormBuilders
                 Validate(nameof(Owner), _owner, _submitRelayCommand);
             }
         }
+
+        private AccountModel _accountModel;
 
         private RelayCommand _cancelRelayCommand;
         private RelayCommand _submitRelayCommand;
@@ -71,13 +83,16 @@ namespace Finance.Forms.FormBuilders
 
         public void BuildForm()
         {
-            GridField grid = new GridField(this, 2);
+            GridField grid = new GridField(this, 3);
 
-            grid.Children.Add(new TextBlockField("Account number", 0));
-            grid.Children.Add(new TextBoxField("AccountNumber", 0));
+            grid.Children.Add(new TextBlockField("Bank", 0));
+            grid.Children.Add(new ComboBoxField("BankValues", string.Empty, "Bank", 0));
 
-            grid.Children.Add(new TextBlockField("Owner", 1));
-            grid.Children.Add(new TextBoxField("Owner", 1));
+            grid.Children.Add(new TextBlockField("Account number", 1));
+            grid.Children.Add(new TextBoxField("AccountNumber", 1));
+
+            grid.Children.Add(new TextBlockField("Owner", 2));
+            grid.Children.Add(new TextBoxField("Owner", 2));
 
             _form.SetGrid(grid);
         }
@@ -86,14 +101,26 @@ namespace Finance.Forms.FormBuilders
         {
             _submitRelayCommand = new RelayCommand( async obj =>
             {
-                AccountModel accountModel = new AccountModel()
+                if (_accountModel == null)
                 {
-                    AccountNumber = AccountNumber,
-                    Owner = Owner,
-                    UserId = _authenticationService.UserId,
-                };
+                    AccountModel accountModel = new AccountModel()
+                    {
+                        Bank = Bank,
+                        AccountNumber = AccountNumber,
+                        Owner = Owner,
+                        UserId = _authenticationService.UserId,
+                    };
 
-                await _accountRepository.AddAsync(accountModel);
+                    await _accountRepository.AddAsync(accountModel);
+                }
+                else
+                {
+                    _accountModel.Bank = Bank;
+                    _accountModel.AccountNumber = AccountNumber;
+                    _accountModel.Owner = Owner;
+
+                    await _accountRepository.UpdateAsync(_accountModel);
+                }
 
                 _navigationService.NavigateTo<AccountsViewModel>();
             }, obj =>
@@ -114,8 +141,17 @@ namespace Finance.Forms.FormBuilders
             _form.SetTitle("Add Account");
         }
 
-        public Form GetForm()
+        public async Task<Form> GetFormAsync(int editId = 0)
         {
+            if (editId != 0)
+            {
+                _accountModel = await _accountRepository.GetByIdAsync(editId);
+
+                this.Bank = _accountModel.Bank;
+                this.AccountNumber = _accountModel.AccountNumber;
+                this.Owner = _accountModel.Owner;
+            }
+
             return _form;
         }
     }

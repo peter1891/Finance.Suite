@@ -34,6 +34,8 @@ namespace Finance.ViewModels
         public ObservableCollection<AccountModel> AccountModels { get; set; } = new ObservableCollection<AccountModel>();
 
         public ICommand NavigateAddCommand { get; }
+        public ICommand NavigateEditCommand { get; }
+        public ICommand NavigateImportCommand { get; }
 
         public AccountsViewModel(
             IServiceProvider serviceProvider,
@@ -53,6 +55,13 @@ namespace Finance.ViewModels
             GetAccountsAsync();
 
             NavigateAddCommand = new RelayCommand(obj => { _navigationService.NavigateTo<FormViewModel>("account"); }, obj => true);
+            NavigateEditCommand = new RelayCommand(obj => { _navigationService.NavigateTo<FormViewModel>("account", (int)obj); }, obj => true);
+            NavigateImportCommand = new RelayCommand(Temp, obj => true);
+        }
+
+        private void Temp(object obj)
+        {
+            throw new NotImplementedException();
         }
 
         private async void GetAccountsAsync()

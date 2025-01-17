@@ -9,6 +9,6 @@ namespace Finance.Utilities.FormBuilder.Interface
         void BuildSubmitButton();
         void BuildCancelButton();
 
-        Form GetForm();
+        Task<Form> GetFormAsync(int editId = 0);
     }
 }

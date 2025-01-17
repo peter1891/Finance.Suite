@@ -21,11 +21,15 @@ namespace Finance.Services.Navigation
         private string _formType;
         public string FormType
         {
-            get { return _formType; }
-            set
-            {
-                _formType = value;
-            }
+            get => _formType;
+            set => _formType = value;
+        }
+
+        private int _editId;
+        public int EditId
+        {
+            get => _editId;
+            set => _editId = value;
         }
 
         public NavigationService(Func<Type, ViewModelBase> viewModelFactory)
@@ -33,10 +37,12 @@ namespace Finance.Services.Navigation
             _viewModelFactory = viewModelFactory;
         }
 
-        public void NavigateTo<T>(String formType = "null") where T : ViewModelBase
+        public void NavigateTo<T>(string formType = "null", int editId = 0) where T : ViewModelBase
         {
             if (formType != "null")
                 FormType = formType;
+
+            EditId = editId;
 
             ViewModelBase viewModelBase = _viewModelFactory.Invoke(typeof(T));
             CurrentView = viewModelBase;

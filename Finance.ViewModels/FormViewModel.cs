@@ -40,7 +40,7 @@ namespace Finance.ViewModels
             _serviceProvider = serviceProvider;
             _navigationService = navigationService;
 
-            _form = _serviceProvider.GetKeyedService<IFormBuilder>(_navigationService.FormType).GetForm();
+            GetFormAsync();
 
             Title = _form.GetTitle();
 
@@ -50,6 +50,13 @@ namespace Finance.ViewModels
 
             ExecuteSubmitCommand = _form.GetSubmitCommand();
             ExecuteCancelCommand = _form.GetCancelCommand();
+        }
+
+        private async void GetFormAsync()
+        {
+            _form = await _serviceProvider
+                .GetKeyedService<IFormBuilder>(_navigationService.FormType)
+                .GetFormAsync(_navigationService.EditId);
         }
     }
 }

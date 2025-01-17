@@ -2,7 +2,7 @@
 {
     public enum Bank
     {
-        Ing,
+        ING,
         Rabobank,
     }
 }
