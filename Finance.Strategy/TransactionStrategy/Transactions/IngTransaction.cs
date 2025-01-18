@@ -34,7 +34,8 @@ namespace Finance.Strategy.TransactionStrategy.Transactions
                         AccountId = accountId,
                     };
 
-                    await _transactionRepository.AddAsync(transactionModel);
+                    if (await _transactionRepository.VerifyTransactionAsync(transactionModel))
+                        await _transactionRepository.AddAsync(transactionModel);
                 }
             }
         }

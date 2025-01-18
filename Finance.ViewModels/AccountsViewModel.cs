@@ -61,7 +61,7 @@ namespace Finance.ViewModels
 
         private void Temp(object obj)
         {
-            throw new NotImplementedException();
+            ReadTransactions((int)obj);
         }
 
         private async void GetAccountsAsync()

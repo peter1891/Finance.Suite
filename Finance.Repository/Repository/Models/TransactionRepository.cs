@@ -1,6 +1,7 @@
 ﻿using Finance.Models;
 using Finance.Repository.Interface.Models;
 using Finance.Utilities.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace Finance.Repository.Repository.Models
 {
@@ -16,6 +17,14 @@ namespace Finance.Repository.Repository.Models
         {
             await DatabaseContext.AddRangeAsync(transactionModels);
             await DatabaseContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> VerifyTransactionAsync(TransactionModel transactionModel)
+        {
+            if (await DatabaseContext.TransactionModels.AnyAsync(t => t.AccountId == transactionModel.AccountId && t.Description == transactionModel.Description))
+                return false;
+
+            return true;
         }
 
         public DatabaseContext DatabaseContext
