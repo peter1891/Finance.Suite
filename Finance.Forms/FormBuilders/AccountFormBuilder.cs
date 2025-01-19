@@ -85,13 +85,13 @@ namespace Finance.Forms.FormBuilders
         {
             GridField grid = new GridField(this, 3);
 
-            grid.Children.Add(new TextBlockField("Bank", 0));
+            grid.Children.Add(new LabelField("Bank", 0));
             grid.Children.Add(new ComboBoxField("BankValues", string.Empty, "Bank", 0));
 
-            grid.Children.Add(new TextBlockField("Account number", 1));
+            grid.Children.Add(new LabelField("Account number", 1));
             grid.Children.Add(new TextBoxField("AccountNumber", 1));
 
-            grid.Children.Add(new TextBlockField("Owner", 2));
+            grid.Children.Add(new LabelField("Owner", 2));
             grid.Children.Add(new TextBoxField("Owner", 2));
 
             _form.SetGrid(grid);

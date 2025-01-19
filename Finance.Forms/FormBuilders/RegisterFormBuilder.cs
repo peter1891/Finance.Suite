@@ -110,16 +110,16 @@ namespace Finance.Forms.FormBuilders
         {
             GridField grid = new GridField(this, 4);
 
-            grid.Children.Add(new TextBlockField("First name", 0));
+            grid.Children.Add(new LabelField("First name", 0));
             grid.Children.Add(new TextBoxField("FirstName", 0));
 
-            grid.Children.Add(new TextBlockField("Last name", 1));
+            grid.Children.Add(new LabelField("Last name", 1));
             grid.Children.Add(new TextBoxField("LastName", 1));
 
-            grid.Children.Add(new TextBlockField("E-mail", 2));
+            grid.Children.Add(new LabelField("E-mail", 2));
             grid.Children.Add(new TextBoxField("Email", 2));
 
-            grid.Children.Add(new TextBlockField("Password", 3));
+            grid.Children.Add(new LabelField("Password", 3));
             grid.Children.Add(new PasswordBoxField("Password", 3).PasswordBox);
 
             _form.SetGrid(grid);

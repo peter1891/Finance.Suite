@@ -117,13 +117,13 @@ namespace Finance.Forms.FormBuilders
         {
             Grid grid = new GridField(this, 4);
 
-            grid.Children.Add(new TextBlockField("Account", 0));
+            grid.Children.Add(new LabelField("Account", 0));
             grid.Children.Add(new ComboBoxField("AuthenticationService.UserModel.Accounts", "AccountNumber", "AccountModel", 0));
 
-            grid.Children.Add(new TextBlockField("Transaction date", 1));
+            grid.Children.Add(new LabelField("Transaction date", 1));
             grid.Children.Add(new DatePickerField("Date", 1));
 
-            grid.Children.Add(new TextBlockField("Amount", 2));
+            grid.Children.Add(new LabelField("Amount", 2));
             grid.Children.Add(new TextBoxField("Amount", 2));
 
             grid.Children.Add(new TextBlockField("Counter Party", 3));
