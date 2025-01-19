@@ -4,8 +4,6 @@ using Finance.Repository.Interface.Models;
 using Finance.Services.Authentication.Interface;
 using Finance.Services.Navigation.Interface;
 using Finance.Strategy.TransactionStrategy;
-using Finance.Strategy.TransactionStrategy.Transactions;
-using Microsoft.Extensions.DependencyInjection;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -13,8 +11,6 @@ namespace Finance.ViewModels
 {
     public class AccountsViewModel : ViewModelBase
     {
-        private readonly IServiceProvider _serviceProvider;
-
         private IAuthenticationService _authenticationService;
         public IAuthenticationService AuthenticationService
         {
@@ -38,14 +34,11 @@ namespace Finance.ViewModels
         public ICommand NavigateImportCommand { get; }
 
         public AccountsViewModel(
-            IServiceProvider serviceProvider,
             IAuthenticationService authenticationService, 
             INavigationService navigationService, 
             IAccountRepository accountRepository,
             TransactionContext transactionContext)
         {
-            _serviceProvider = serviceProvider;
-
             AuthenticationService = authenticationService;
             _navigationService = navigationService;
             _accountRepository = accountRepository;
@@ -56,23 +49,12 @@ namespace Finance.ViewModels
 
             NavigateAddCommand = new RelayCommand(obj => { _navigationService.NavigateTo<FormViewModel>("account"); }, obj => true);
             NavigateEditCommand = new RelayCommand(obj => { _navigationService.NavigateTo<FormViewModel>("account", (int)obj); }, obj => true);
-            NavigateImportCommand = new RelayCommand(Temp, obj => true);
-        }
-
-        private void Temp(object obj)
-        {
-            ReadTransactions((int)obj);
+            NavigateImportCommand = new RelayCommand(obj => { _navigationService.NavigateTo<FormViewModel>("importTransaction", (int)obj); }, obj => true);
         }
 
         private async void GetAccountsAsync()
         {
             AccountModels = new ObservableCollection<AccountModel>(await _accountRepository.GetAccountsByAuthenticatedIdAsync(AuthenticationService.UserId));
-        }
-
-        private void ReadTransactions(int accountId)
-        {
-            _transactionContext.SetTransactionContext(_serviceProvider.GetRequiredService<IngTransaction>());
-            _transactionContext.ProcessTransaction(accountId, "C:\\Users\\peter\\ing.csv");
         }
     }
 }

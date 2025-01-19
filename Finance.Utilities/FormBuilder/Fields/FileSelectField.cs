@@ -17,6 +17,7 @@ namespace Finance.Utilities.FormBuilder.Fields
         public FileSelectField(string binding, int row)
         {
             this.Orientation = Orientation.Horizontal;
+            this.HorizontalAlignment = HorizontalAlignment.Stretch;
 
             this._textBox = SetTextBox(binding);
             this._button = SetButton();

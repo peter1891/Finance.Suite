@@ -56,6 +56,7 @@ namespace Pluto
             services.AddSingleton<IPasswordEncoder, PasswordEncoder>();
 
             services.AddKeyedTransient<IFormBuilder, AccountFormBuilder>("account");
+            services.AddKeyedTransient<IFormBuilder, ImportTransactionFormBuilder>("importTransaction");
             services.AddKeyedTransient<IFormBuilder, RegisterFormBuilder>("register");
             services.AddKeyedTransient<IFormBuilder, TransactionFormBuilder>("transaction");
 
