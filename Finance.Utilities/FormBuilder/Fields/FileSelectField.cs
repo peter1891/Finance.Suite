@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Finance.Utilities.FormBuilder.Fields
 {
-    public class FileSelectField : StackPanel
+    public class FileSelectField : Grid
     {
         private TextBox _textBox;
         private Button _button;
@@ -16,11 +16,16 @@ namespace Finance.Utilities.FormBuilder.Fields
 
         public FileSelectField(string binding, int row)
         {
-            this.Orientation = Orientation.Horizontal;
             this.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            this.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            this.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
 
             this._textBox = SetTextBox(binding);
             this._button = SetButton();
+
+            Grid.SetColumn(_textBox, 0);
+            Grid.SetColumn(_button, 1);
 
             this.Children.Add(_textBox);
             this.Children.Add(_button);
@@ -29,6 +34,8 @@ namespace Finance.Utilities.FormBuilder.Fields
             Grid.SetRow(this, row);
 
             ExecuteBrowseCommand = new RelayCommand(ExecuteBrowse, obj => true);
+
+            _button.Command = ExecuteBrowseCommand;
         }
 
         private void ExecuteBrowse(object obj)
@@ -57,14 +64,10 @@ namespace Finance.Utilities.FormBuilder.Fields
 
         private Button SetButton()
         {
-            Button button = new Button()
+            return new Button()
             {
                 Content = "Browse...",
             };
-
-            button.SetBinding(Button.CommandProperty, new Binding("ExecuteBrowseCommand"));
-
-            return button;
         }
     }
 }
