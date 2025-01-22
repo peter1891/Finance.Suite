@@ -42,14 +42,31 @@
                 <DataGridTextColumn Header="Date"
                                     Binding="{Binding Date}"/>
 
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding Name}"/>
+
                 <DataGridTextColumn Header="Amount"
                                     Binding="{Binding Amount}"/>
 
-                <DataGridTextColumn Header="Counter Party"
-                                    Binding="{Binding CounterParty}"/>
+                <DataGridTemplateColumn>
 
-                <DataGridTextColumn Header="Description"
-                                    Binding="{Binding Description}"/>
+                    <DataGridTemplateColumn.CellTemplate>
+
+                        <DataTemplate>
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <Button Content="Edit"
+                                        Command="{Binding DataContext.NavigateEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding Id}"/>
+
+                            </StackPanel>
+                            
+                        </DataTemplate>
+                        
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
 
             </DataGrid.Columns>
             

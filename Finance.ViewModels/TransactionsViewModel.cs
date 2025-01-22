@@ -15,6 +15,7 @@ namespace Finance.ViewModels
         public ObservableCollection<TransactionModel> TransactionModels { get; set; } = new ObservableCollection<TransactionModel>();
 
         public ICommand NavigateAddCommand { get; }
+        public ICommand NavigateEditCommand { get; }
 
         public TransactionsViewModel(INavigationService navigationService, ITransactionRepository transactionRepository)
         {
@@ -24,6 +25,7 @@ namespace Finance.ViewModels
             GetTransactionsAsync();
 
             NavigateAddCommand = new RelayCommand(obj => { _navigationService.NavigateTo<FormViewModel>("transaction"); }, obj => true);
+            NavigateEditCommand = new RelayCommand(obj => { _navigationService.NavigateTo<FormViewModel>("transaction", (int)obj); }, obj => true);
         }
 
         private async void GetTransactionsAsync()

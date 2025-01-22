@@ -10,9 +10,12 @@ namespace Finance.Models
         public double Amount { get; set; }
         public string Type { get; set; }
 
+        public string Name { get; set; }
         public string CounterParty { get; set; }
 
         public string Description { get; set; }
+
+        public bool Recurring { get; set; }
 
         public int AccountId { get; set; }
         public AccountModel Account { get; set; }

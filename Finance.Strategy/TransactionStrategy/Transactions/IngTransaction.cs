@@ -29,6 +29,7 @@ namespace Finance.Strategy.TransactionStrategy.Transactions
                         Date = DateTime.ParseExact(cells[0].Trim('"'), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture),
                         Amount = double.Parse(cells[6].Trim('"')),
                         Type = cells[5].Trim('"'),
+                        Name = cells[1].Trim('"'),
                         CounterParty = cells[3].Trim('"'),
                         Description = cells[8].Trim('"'),
                         AccountId = accountId,
