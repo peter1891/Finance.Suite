@@ -12,6 +12,10 @@
                 <v:AccountsView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type TypeName=vm:DialogViewModel}">
+                <v:DialogView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type TypeName=vm:DashboardViewModel}">
                 <v:DashboardView/>
             </DataTemplate>

@@ -63,7 +63,11 @@
                                 <Button Content="Edit"
                                         Command="{Binding DataContext.NavigateEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                         CommandParameter="{Binding Id}"/>
-                                
+
+                                <Button Content="Delete"
+                                        Command="{Binding DataContext.NavigateDeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding Id}"/>
+
                             </StackPanel>
 
                         </DataTemplate>

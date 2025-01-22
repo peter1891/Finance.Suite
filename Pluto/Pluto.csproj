@@ -13,16 +13,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Finance.Core\Finance.Core.csproj" />
     <ProjectReference Include="..\Finance.CustomControls\Finance.CustomControls.csproj" />
+    <ProjectReference Include="..\Finance.Factory\Finance.Factory.csproj" />
     <ProjectReference Include="..\Finance.Forms\Finance.Forms.csproj" />
     <ProjectReference Include="..\Finance.Models\Finance.Models.csproj" />
     <ProjectReference Include="..\Finance.Repository\Finance.Repository.csproj" />

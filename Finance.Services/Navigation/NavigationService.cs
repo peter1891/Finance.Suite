@@ -18,11 +18,11 @@ namespace Finance.Services.Navigation
             }
         }
 
-        private string _formType;
-        public string FormType
+        private string _key;
+        public string Key
         {
-            get => _formType;
-            set => _formType = value;
+            get => _key;
+            set => _key = value;
         }
 
         private int _editId;
@@ -37,10 +37,10 @@ namespace Finance.Services.Navigation
             _viewModelFactory = viewModelFactory;
         }
 
-        public void NavigateTo<T>(string formType = "null", int editId = 0) where T : ViewModelBase
+        public void NavigateTo<T>(string key = "null", int editId = 0) where T : ViewModelBase
         {
-            if (formType != "null")
-                FormType = formType;
+            if (key != "null")
+                Key = key;
 
             EditId = editId;
 

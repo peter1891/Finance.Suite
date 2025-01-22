@@ -17,6 +17,9 @@ using Finance.Utilities.Encoder.Interface;
 using Finance.Utilities.Encoder;
 using Finance.Strategy.TransactionStrategy;
 using Finance.Strategy.TransactionStrategy.Transactions;
+using Finance.Factory.DialogFactory.Interface;
+using Finance.Factory.DialogFactory;
+using Finance.Factory.DialogFactory.Dialogs;
 
 namespace Pluto
 {
@@ -42,6 +45,7 @@ namespace Pluto
                 DataContext = provider.GetRequiredService<MainViewModel>()
             });
 
+            services.AddTransient<DialogViewModel>();
             services.AddTransient<FormViewModel>();
             services.AddSingleton<MainViewModel>();
 
@@ -60,12 +64,16 @@ namespace Pluto
             services.AddKeyedTransient<IFormBuilder, RegisterFormBuilder>("register");
             services.AddKeyedTransient<IFormBuilder, TransactionFormBuilder>("transaction");
 
-            services.AddSingleton<IAuthenticationService, AuthenticationService>();
-            services.AddSingleton<INavigationService, NavigationService>();
-
             services.AddSingleton<IAccountRepository, AccountRepository>();
             services.AddSingleton<ITransactionRepository, TransactionRepository>();
             services.AddSingleton<IUserRepository, UserRepository>();
+
+            services.AddSingleton<DialogFactory>();
+
+            services.AddTransient<RemoveAccountDialog<AccountsViewModel>>();
+
+            services.AddSingleton<IAuthenticationService, AuthenticationService>();
+            services.AddSingleton<INavigationService, NavigationService>();
 
             services.AddSingleton<Func<Type, ViewModelBase>>(serviceProvider => viewModelType => (ViewModelBase)serviceProvider.GetRequiredService(viewModelType));
         }

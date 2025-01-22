@@ -7,13 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Finance.Core\Finance.Core.csproj" />
     <ProjectReference Include="..\Finance.Enums\Finance.Enums.csproj" />
-    <ProjectReference Include="..\Finance.Factory\Finance.Factory.csproj" />
     <ProjectReference Include="..\Finance.Repository\Finance.Repository.csproj" />
     <ProjectReference Include="..\Finance.Services\Finance.Services.csproj" />
-    <ProjectReference Include="..\Finance.Strategy\Finance.Strategy.csproj" />
-    <ProjectReference Include="..\Finance.Utilities\Finance.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

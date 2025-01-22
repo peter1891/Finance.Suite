@@ -55,7 +55,7 @@ namespace Finance.ViewModels
         private async void GetFormAsync()
         {
             _form = await _serviceProvider
-                .GetKeyedService<IFormBuilder>(_navigationService.FormType)
+                .GetKeyedService<IFormBuilder>(_navigationService.Key)
                 .GetFormAsync(_navigationService.EditId);
         }
     }
