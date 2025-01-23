@@ -20,10 +20,10 @@ namespace Finance.Forms.FormBuilders
 
         private Form _form;
 
-        public List<Bank> BankValues { get; set; } = new List<Bank>(Enum.GetValues(typeof(Bank)).Cast<Bank>().ToList());
+        public List<BankName> BankValues { get; set; } = new List<BankName>(Enum.GetValues(typeof(BankName)).Cast<BankName>().ToList());
 
-        private Bank _bank;
-        public Bank Bank
+        private BankName _bank;
+        public BankName Bank
         {
             get => _bank;
             set => _bank = value;

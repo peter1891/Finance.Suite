@@ -1,6 +1,6 @@
 ﻿namespace Finance.Enums
 {
-    public enum Bank
+    public enum BankName
     {
         ING,
         Rabobank,

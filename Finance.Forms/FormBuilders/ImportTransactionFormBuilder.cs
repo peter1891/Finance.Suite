@@ -113,10 +113,10 @@ namespace Finance.Forms.FormBuilders
             {
                 switch(AccountModel.Bank)
                 {
-                    case Bank.ING:
+                    case BankName.ING:
                         _transactionContext.SetTransactionContext(_serviceProvider.GetRequiredService<IngTransaction>());
                         break;
-                    case Bank.Rabobank:
+                    case BankName.Rabobank:
                         _transactionContext.SetTransactionContext(_serviceProvider.GetRequiredService<RabobankTransaction>());
                         break;
                     default:

@@ -7,7 +7,7 @@ namespace Finance.Models
     public class AccountModel
     {
         public int Id { get; set; }
-        public Bank Bank { get; set; }
+        public BankName Bank { get; set; }
         public string AccountNumber { get; set; }
         public string Owner { get; set; }
 
