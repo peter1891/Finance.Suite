@@ -29,62 +29,38 @@ namespace Finance.Forms.FormBuilders
 
         private Form _form;
 
-        private DateTime _date;
-        public DateTime Date
+        private bool _recurring;
+        public bool Recurring
         {
-            get => _date;
+            get => _recurring;
             set
             {
-                _date = value;
-                OnPropertyChanged(nameof(Date));
+                _recurring = value;
+                OnPropertyChanged(nameof(Recurring));
             }
         }
 
-        private double _amount;
-        public double Amount 
-        { 
-            get => _amount; 
-            set
-            {
-                _amount = value;
-                OnPropertyChanged(nameof(Amount));
-            }
-        }
-
-        private string _type;
-        public string Type
+        private string _comment;
+        public string Comment
         {
-            get => _type;
+            get => _comment;
             set
             {
-                _type = value;
-                OnPropertyChanged(nameof(Type));
+                _comment = value;
+                OnPropertyChanged(nameof(Comment));
             }
         }
 
-        private string _counterParty;
-        public string CounterParty
+        private TransactionModel _transactionModel;
+        public TransactionModel TransactionModel
         {
-            get => _counterParty;
+            get => _transactionModel;
             set
             {
-                _counterParty = value;
-                OnPropertyChanged(nameof(CounterParty));
+                _transactionModel = value;
+                OnPropertyChanged(nameof(TransactionModel));
             }
         }
-
-        private string _description;
-        public string Description
-        {
-            get => _description;
-            set
-            {
-                _description = value;
-                OnPropertyChanged(nameof(Description));
-            }
-        }
-
-        public AccountModel AccountModel { get; set; }
 
         public TransactionFormBuilder(
             IAuthenticationService authenticationService, 
@@ -96,8 +72,6 @@ namespace Finance.Forms.FormBuilders
             _transactionRepository = transactionRepository;
 
             _form = new Form();
-
-            this.Date = DateTime.Now;
 
             BuildTitle();
             BuildForm();
@@ -115,19 +89,25 @@ namespace Finance.Forms.FormBuilders
 
         public void BuildForm()
         {
-            Grid grid = new GridField(this, 4);
+            Grid grid = new GridField(this, 6);
 
             grid.Children.Add(new LabelField("Account", 0));
-            grid.Children.Add(new ComboBoxField("AuthenticationService.UserModel.Accounts", "AccountNumber", "AccountModel", 0));
+            grid.Children.Add(new TextBlockField("TransactionModel.Account.AccountNumber", 0));
 
             grid.Children.Add(new LabelField("Transaction date", 1));
-            grid.Children.Add(new DatePickerField("Date", 1));
+            grid.Children.Add(new TextBlockField("TransactionModel.Date", 1));
 
             grid.Children.Add(new LabelField("Amount", 2));
-            grid.Children.Add(new TextBoxField("Amount", 2));
+            grid.Children.Add(new TextBlockField("TransactionModel.Amount", 2));
 
-            grid.Children.Add(new TextBlockField("Counter Party", 3));
-            grid.Children.Add(new TextBoxField("CounterParty", 3));
+            grid.Children.Add(new LabelField("Counter Party", 3));
+            grid.Children.Add(new TextBlockField("TransactionModel.CounterParty", 3));
+
+            grid.Children.Add(new LabelField("Recurring", 4));
+            grid.Children.Add(new CheckBoxField("Recurring", 4));
+
+            grid.Children.Add(new LabelField("Comment", 5));
+            grid.Children.Add(new TextBoxField("Comment", 5));
 
             _form.SetGrid(grid);
         }
@@ -136,17 +116,13 @@ namespace Finance.Forms.FormBuilders
         {
             RelayCommand submitRelayCommand = new RelayCommand(async obj =>
             {
-                TransactionModel transactionModel = new TransactionModel()
+                if (this.TransactionModel != null)
                 {
-                    Date = this.Date,
-                    Amount = this.Amount,
-                    Type = this.Type,
-                    Account = this.AccountModel,
-                    CounterParty = this.CounterParty,
-                    Description = this.Description,
-                };
+                    this.TransactionModel.Recurring = Recurring;
+                    this.TransactionModel.Comment = Comment;
 
-                await _transactionRepository.AddAsync(transactionModel);
+                    await _transactionRepository.UpdateAsync(this.TransactionModel);
+                }
 
                 _navigationService.NavigateTo<TransactionsViewModel>();
             }, obj => true);
@@ -162,6 +138,14 @@ namespace Finance.Forms.FormBuilders
 
         public async Task<Form> GetFormAsync(int editId = 0)
         {
+            if (editId != 0)
+            {
+                this.TransactionModel = await _transactionRepository.GetByIdAsync(editId);
+
+                this.Recurring = _transactionModel.Recurring;
+                this.Comment = _transactionModel.Comment;
+            }
+
             return _form;
         }
     }

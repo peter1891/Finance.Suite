@@ -36,7 +36,7 @@
 
   <ItemGroup>
     <None Update="PlutoDb.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

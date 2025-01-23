@@ -1,4 +1,5 @@
-﻿using Finance.Models;
+﻿using Finance.Enums;
+using Finance.Models;
 using Finance.Repository.Interface.Models;
 using Finance.Services.Authentication.Interface;
 using Finance.Strategy.TransactionStrategy.Transactions.Interface;
@@ -28,7 +29,7 @@ namespace Finance.Strategy.TransactionStrategy.Transactions
                     {
                         Date = DateTime.ParseExact(cells[0].Trim('"'), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture),
                         Amount = double.Parse(cells[6].Trim('"')),
-                        Type = cells[5].Trim('"'),
+                        Type = cells[5].Trim('"') == "Bij" ? TransactionType.Credit : TransactionType.Debit,
                         Name = cells[1].Trim('"'),
                         CounterParty = cells[3].Trim('"'),
                         Description = cells[8].Trim('"'),
