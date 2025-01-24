@@ -13,17 +13,6 @@ namespace Finance.Forms.FormBuilders
 {
     public class TransactionFormBuilder : FormBuilderBase, IFormBuilder
     {
-        private IAuthenticationService _authenticationService;
-        public IAuthenticationService AuthenticationService
-        {
-            get => _authenticationService;
-            set
-            {
-                _authenticationService = value;
-                OnPropertyChanged(nameof(AuthenticationService));
-            }
-        }
-
         private readonly INavigationService _navigationService;
         private readonly ITransactionRepository _transactionRepository;
 
@@ -63,11 +52,9 @@ namespace Finance.Forms.FormBuilders
         }
 
         public TransactionFormBuilder(
-            IAuthenticationService authenticationService, 
             INavigationService navigationService, 
             ITransactionRepository transactionRepository)
         {
-            AuthenticationService = authenticationService;
             _navigationService = navigationService;
             _transactionRepository = transactionRepository;
 
@@ -89,7 +76,7 @@ namespace Finance.Forms.FormBuilders
 
         public void BuildForm()
         {
-            Grid grid = new GridField(this, 6);
+            Grid grid = new GridField(this, 8);
 
             grid.Children.Add(new LabelField("Account", 0));
             grid.Children.Add(new TextBlockField("TransactionModel.Account.AccountNumber", 0));
@@ -100,14 +87,20 @@ namespace Finance.Forms.FormBuilders
             grid.Children.Add(new LabelField("Amount", 2));
             grid.Children.Add(new TextBlockField("TransactionModel.Amount", 2));
 
-            grid.Children.Add(new LabelField("Counter Party", 3));
-            grid.Children.Add(new TextBlockField("TransactionModel.CounterParty", 3));
+            grid.Children.Add(new LabelField("Name", 3));
+            grid.Children.Add(new TextBlockField("TransactionModel.Name", 3));
 
-            grid.Children.Add(new LabelField("Recurring", 4));
-            grid.Children.Add(new CheckBoxField("Recurring", 4));
+            grid.Children.Add(new LabelField("Counter Party", 4));
+            grid.Children.Add(new TextBlockField("TransactionModel.CounterParty", 4));
 
-            grid.Children.Add(new LabelField("Comment", 5));
-            grid.Children.Add(new TextBoxField("Comment", 5));
+            grid.Children.Add(new LabelField("Description", 5));
+            grid.Children.Add(new TextBlockField("TransactionModel.Description", 5));
+
+            grid.Children.Add(new LabelField("Recurring", 6));
+            grid.Children.Add(new CheckBoxField("Recurring", 6));
+
+            grid.Children.Add(new LabelField("Comment", 7));
+            grid.Children.Add(new TextBoxField("Comment", 7));
 
             _form.SetGrid(grid);
         }
@@ -133,7 +126,7 @@ namespace Finance.Forms.FormBuilders
 
         public void BuildTitle()
         {
-            _form.SetTitle("Add Transaction");
+            _form.SetTitle("Transaction");
         }
 
         public async Task<Form> GetFormAsync(int editId = 0)
