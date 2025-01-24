@@ -50,6 +50,7 @@ namespace Pluto
             services.AddSingleton<MainViewModel>();
 
             services.AddTransient<AccountsViewModel>();
+            services.AddTransient<AllocationsViewModel>();
             services.AddTransient<DashboardViewModel>();
             services.AddSingleton<LoginViewModel>();
             services.AddTransient<TransactionsViewModel>();
