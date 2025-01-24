@@ -50,6 +50,13 @@ namespace Finance.Repository.Repository.Models
             return false;
         }
 
+        public async Task<IEnumerable<TransactionModel>> GetTransactionsByAuthenticatedIdAsync(int id)
+        {
+            return await DatabaseContext.TransactionModels
+                .Where(t => t.Account.UserId == id)
+                .ToListAsync();
+        }
+
         public DatabaseContext DatabaseContext
         {
             get { return _context as DatabaseContext; }

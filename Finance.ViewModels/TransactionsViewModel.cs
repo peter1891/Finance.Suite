@@ -1,6 +1,7 @@
 ﻿using Finance.Core;
 using Finance.Models;
 using Finance.Repository.Interface.Models;
+using Finance.Services.Authentication.Interface;
 using Finance.Services.Navigation.Interface;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ namespace Finance.ViewModels
 {
     public class TransactionsViewModel : ViewModelBase
     {
+        private readonly IAuthenticationService _authenticationService;
         private readonly INavigationService _navigationService;
         private readonly ITransactionRepository _transactionRepository;
 
@@ -17,8 +19,9 @@ namespace Finance.ViewModels
 
         public ICommand NavigateEditCommand { get; }
 
-        public TransactionsViewModel(INavigationService navigationService, ITransactionRepository transactionRepository)
+        public TransactionsViewModel(IAuthenticationService authenticationService, INavigationService navigationService, ITransactionRepository transactionRepository)
         {
+            _authenticationService = authenticationService;
             _navigationService = navigationService;
             _transactionRepository = transactionRepository;
 
@@ -32,7 +35,7 @@ namespace Finance.ViewModels
             if (TransactionModels.Count != 0)
                 TransactionModels.Clear();
 
-            var transactionModels = await _transactionRepository.GetAllAsync();
+            var transactionModels = await _transactionRepository.GetTransactionsByAuthenticatedIdAsync(_authenticationService.UserId);
             foreach (TransactionModel transactionModel in transactionModels)
                 TransactionModels.Add(transactionModel);
         }
