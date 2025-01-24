@@ -3,6 +3,7 @@ using Finance.Models;
 using Finance.Repository.Interface.Models;
 using Finance.Services.Navigation.Interface;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace Finance.ViewModels

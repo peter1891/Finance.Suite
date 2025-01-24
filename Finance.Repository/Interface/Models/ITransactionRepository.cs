@@ -6,5 +6,6 @@ namespace Finance.Repository.Interface.Models
     {
         Task AddTransactionsAsync(IEnumerable<TransactionModel> transactionModels);
         Task<bool> VerifyTransactionAsync(TransactionModel transactionModel);
+        Task<bool> IsRecurringTransactionAsync(TransactionModel transactionModel);
     }
 }

@@ -36,6 +36,9 @@ namespace Finance.Strategy.TransactionStrategy.Transactions
                         AccountId = accountId,
                     };
 
+                    if (await _transactionRepository.IsRecurringTransactionAsync(transactionModel))
+                        transactionModel.Recurring = true;
+
                     if (await _transactionRepository.VerifyTransactionAsync(transactionModel))
                         await _transactionRepository.AddAsync(transactionModel);
                 }
