@@ -15,5 +15,6 @@ namespace Finance.Models
         public UserModel User { get; set; }
 
         public List<TransactionModel> Transactions { get; set; }
+        public List<AllocationModel> Allocations { get; set; }
     }
 }
