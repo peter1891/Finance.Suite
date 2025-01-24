@@ -23,6 +23,6 @@ namespace Finance.Models
         public AccountModel Account { get; set; }
 
         public int AllocationId { get; set; }
-        public AllocationModel Allocation { get; set;
+        public AllocationModel Allocation { get; set; }
     }
 }
