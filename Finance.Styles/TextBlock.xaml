@@ -14,6 +14,19 @@
 
     </Style>
 
+    <Style x:Key="ErrorMessageField"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource {x:Type TextBlock}}">
+
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch"/>
+        
+    </Style>
+
+    <Style x:Key="LabelField" 
+           TargetType="TextBlock"
+           BasedOn="{StaticResource {x:Type TextBlock}}"/>
+
     <Style x:Key="TextBlockField" 
            TargetType="TextBlock"
            BasedOn="{StaticResource {x:Type TextBlock}}">
@@ -22,9 +35,5 @@
                 Value="Stretch"/>
 
     </Style>
-
-    <Style x:Key="LabelField" 
-           TargetType="TextBlock"
-           BasedOn="{StaticResource {x:Type TextBlock}}"/>
     
 </ResourceDictionary>

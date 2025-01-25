@@ -75,6 +75,17 @@ namespace Finance.Forms.FormBuilders
             }
         }
 
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         private RelayCommand _cancelRelayCommand;
         private RelayCommand _submitRelayCommand;
 
@@ -108,7 +119,7 @@ namespace Finance.Forms.FormBuilders
 
         public void BuildForm()
         {
-            GridField grid = new GridField(this, 4);
+            GridField grid = new GridField(this, 5);
 
             grid.Children.Add(new LabelField("First name", 0));
             grid.Children.Add(new TextBoxField("FirstName", 0));
@@ -122,26 +133,34 @@ namespace Finance.Forms.FormBuilders
             grid.Children.Add(new LabelField("Password", 3));
             grid.Children.Add(new PasswordBoxField("Password", 3).PasswordBox);
 
+            grid.Children.Add(new ErrorMessageField("ErrorMessage", 4));
+
             _form.SetGrid(grid);
         }
 
         public void BuildSubmitButton()
         {
-            _submitRelayCommand = new RelayCommand( async obj => 
+            _submitRelayCommand = new RelayCommand( async obj =>
             {
-                string password = _passwordEncoder.GetHashPassword(Password);
-
-                UserModel userModel = new UserModel()
+                if (!await _userRepository.ValidateNewUser(this.Email))
                 {
-                    FirstName = this.FirstName,
-                    LastName = this.LastName,
-                    Email = this.Email,
-                    Password = password
-                };
+                    string password = _passwordEncoder.GetHashPassword(Password);
 
-                await _userRepository.AddAsync(userModel);
+                    UserModel userModel = new UserModel()
+                    {
+                        FirstName = this.FirstName,
+                        LastName = this.LastName,
+                        Email = this.Email,
+                        Password = password
+                    };
+                    await _userRepository.AddAsync(userModel);
 
-                _navigationService.NavigateTo<LoginViewModel>();
+                    _navigationService.NavigateTo<LoginViewModel>();
+                }
+                else
+                {
+                    ErrorMessage = "E-mail is already registered.";
+                }
              }, obj => 
              {
                  if (!string.IsNullOrWhiteSpace(FirstName) &&
