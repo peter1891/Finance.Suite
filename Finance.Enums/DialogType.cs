@@ -2,6 +2,7 @@
 {
     public enum DialogType
     {
-        RemoveAccount,
+        DeleteAccount,
+        DeleteAllocation,
     }
 }

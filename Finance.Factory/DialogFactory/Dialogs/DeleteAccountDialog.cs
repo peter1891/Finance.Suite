@@ -4,13 +4,13 @@ using Finance.Services.Navigation.Interface;
 
 namespace Finance.Factory.DialogFactory.Dialogs
 {
-    public class RemoveAccountDialog<T> : Dialog where T : ViewModelBase
+    public class DeleteAccountDialog<T> : Dialog where T : ViewModelBase
     {
         private readonly INavigationService _navigationService;
 
         private readonly IAccountRepository _accountRepository;
 
-        public RemoveAccountDialog(
+        public DeleteAccountDialog(
             INavigationService navigationService,
             IAccountRepository accountRepository
             )
