@@ -20,7 +20,7 @@ namespace Finance.ViewModels
 
         private readonly IAccountRepository _accountRepository;
 
-        public ObservableCollection<AccountModel> AccountModels { get; set; } = new ObservableCollection<AccountModel>();
+        public ObservableCollection<AccountModel> AccountModels { get; set; }
 
         public ICommand NavigateAddCommand { get; }
         public ICommand NavigateDeleteCommand { get;  }
@@ -31,13 +31,12 @@ namespace Finance.ViewModels
             IAuthenticationService authenticationService, 
             INavigationService navigationService, 
             DialogFactory dialogFactory,
-            IAccountRepository accountRepository)
+            IAccountRepository accountRepository
+            )
         {
             _authenticationService = authenticationService;
             _navigationService = navigationService;
-
             _dialogFactory = dialogFactory;
-
             _accountRepository = accountRepository;
 
             GetAccountsAsync();
@@ -50,7 +49,7 @@ namespace Finance.ViewModels
 
         private void NavigateDelete(object obj)
         {
-            _dialogFactory.SetDialog<AccountsViewModel>(DialogType.RemoveAccount, obj);
+            _dialogFactory.SetDialog<AccountsViewModel>(DialogType.DeleteAccount, obj);
 
             _navigationService.NavigateTo<DialogViewModel>();
         }

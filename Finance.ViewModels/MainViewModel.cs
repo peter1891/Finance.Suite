@@ -33,6 +33,7 @@ namespace Finance.ViewModels
         }
 
         public ICommand NavigateAccountsCommand { get; }
+        public ICommand NavigateAllocationsCommand { get; }
         public ICommand NavigateDashboardCommand { get; }
         public ICommand NavigateTransactionsCommand { get; }
 
@@ -45,6 +46,7 @@ namespace Finance.ViewModels
             NavigationService.NavigateTo<DashboardViewModel>();
 
             NavigateAccountsCommand = new RelayCommand(obj => { _navigationService.NavigateTo<AccountsViewModel>(); }, obj => true);
+            NavigateAllocationsCommand = new RelayCommand(obj => { _navigationService.NavigateTo<AllocationsViewModel>(); }, obj => true);
             NavigateDashboardCommand = new RelayCommand(obj => { _navigationService.NavigateTo<DashboardViewModel>(); }, obj => true);
             NavigateTransactionsCommand = new RelayCommand(obj => { _navigationService.NavigateTo<TransactionsViewModel>(); }, obj => true);
 

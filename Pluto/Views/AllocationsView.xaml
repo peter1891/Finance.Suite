@@ -23,6 +23,56 @@
                Grid.Row="0"
                Content="Allocations"/>
 
+        <Button Grid.Column="1"
+                Grid.Row="1"
+                Content="Add"
+                Command="{Binding NavigateAddCommand}"
+                HorizontalAlignment="Right"/>
+
+        <DataGrid Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  Grid.Row="2"
+                  ItemsSource="{Binding AllocationModels}">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding Name}"/>
+
+                <DataGridTextColumn Header="Amount"
+                                    Binding="{Binding Amount}"/>
+
+                <DataGridTextColumn Header="Target Aoumnt"
+                                    Binding="{Binding TargetAmount}"/>
+
+                <DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn.CellTemplate>
+
+                        <DataTemplate>
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <Button Content="Edit"
+                                        Command="{Binding DataContext.NavigateEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding Id}"/>
+
+                                <Button Content="Delete"
+                                        Command="{Binding DataContext.NavigateDeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding Id}"/>
+
+                            </StackPanel>
+
+                        </DataTemplate>
+
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
     </Grid>
     
 </UserControl>

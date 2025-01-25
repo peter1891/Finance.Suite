@@ -61,17 +61,20 @@ namespace Pluto
             services.AddSingleton<IPasswordEncoder, PasswordEncoder>();
 
             services.AddKeyedTransient<IFormBuilder, AccountFormBuilder>("account");
+            services.AddKeyedTransient<IFormBuilder, AllocationFormBuilder>("allocation");
             services.AddKeyedTransient<IFormBuilder, ImportTransactionFormBuilder>("importTransaction");
             services.AddKeyedTransient<IFormBuilder, RegisterFormBuilder>("register");
             services.AddKeyedTransient<IFormBuilder, TransactionFormBuilder>("transaction");
 
             services.AddSingleton<IAccountRepository, AccountRepository>();
+            services.AddSingleton<IAllocationRepository, AllocationRepository>();
             services.AddSingleton<ITransactionRepository, TransactionRepository>();
             services.AddSingleton<IUserRepository, UserRepository>();
 
             services.AddSingleton<DialogFactory>();
 
-            services.AddTransient<RemoveAccountDialog<AccountsViewModel>>();
+            services.AddTransient<DeleteAccountDialog<AccountsViewModel>>();
+            services.AddTransient<DeleteAllocationDialog<AllocationsViewModel>>();
 
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<INavigationService, NavigationService>();

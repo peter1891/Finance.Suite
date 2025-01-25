@@ -22,6 +22,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
@@ -36,19 +37,21 @@
                          Command="{Binding NavigateDashboardCommand}"/>
 
             <RadioButton Grid.Column="2" 
+                         Content="Allocations"
+                         IsEnabled="{Binding AuthenticationService.IsAuthenticated}"
+                         Command="{Binding NavigateAllocationsCommand}"/>
+
+            <RadioButton Grid.Column="3" 
                          Content="Transactions"
                          IsEnabled="{Binding AuthenticationService.IsAuthenticated}"
                          Command="{Binding NavigateTransactionsCommand}"/>
 
-            <RadioButton Grid.Column="3" 
+            <RadioButton Grid.Column="4" 
                          Content="Accounts"
                          IsEnabled="{Binding AuthenticationService.IsAuthenticated}"
                          Command="{Binding NavigateAccountsCommand}"/>
 
-            <TextBlock Grid.Column="5"
-                       Text="Inloggen"/>
-
-            <Button Grid.Column="5"
+            <Button Grid.Column="6"
                     Content="{Binding AuthenticationService.ButtonText}"
                     Command="{Binding ExecuteLogoutCommand}"/>
 

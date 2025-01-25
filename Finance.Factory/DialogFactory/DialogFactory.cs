@@ -26,8 +26,14 @@ namespace Finance.Factory.DialogFactory
         {
             switch(dialogStyle)
             {
-                case Enums.DialogType.RemoveAccount:
-                    _dialog = _serviceProvider.GetRequiredService<RemoveAccountDialog<T>>();
+                case DialogType.DeleteAccount:
+                    _dialog = _serviceProvider.GetRequiredService<DeleteAccountDialog<T>>();
+
+                    if (commandParameter != null)
+                        _dialog.CommandParameter = commandParameter.ToString();
+                    break;
+                case DialogType.DeleteAllocation:
+                    _dialog = _serviceProvider.GetRequiredService<DeleteAllocationDialog<T>>();
 
                     if (commandParameter != null)
                         _dialog.CommandParameter = commandParameter.ToString();
