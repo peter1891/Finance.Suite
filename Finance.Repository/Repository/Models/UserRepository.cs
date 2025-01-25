@@ -26,6 +26,11 @@ namespace Finance.Repository.Repository.Models
                 .FirstOrDefaultAsync(u => u.Email == networkCredential.UserName && u.Password == networkCredential.Password);
         }
 
+        public async Task<bool> ValidateNewUser(string email)
+        {
+            return await DatabaseContext.UserModels.AnyAsync(u => u.Email == email);
+        }
+
         public DatabaseContext DatabaseContext
         {
             get { return _context as DatabaseContext; }
