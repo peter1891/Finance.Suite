@@ -22,7 +22,7 @@ namespace Finance.Models
         public int AccountId { get; set; }
         public AccountModel Account { get; set; }
 
-        public int AllocationId { get; set; }
-        public AllocationModel Allocation { get; set; }
+        public int? AllocationId { get; set; }
+        public AllocationModel? Allocation { get; set; }
     }
 }
