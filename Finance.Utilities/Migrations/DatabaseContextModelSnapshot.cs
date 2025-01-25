@@ -82,7 +82,7 @@ namespace Finance.Utilities.Migrations
                     b.Property<int>("AccountId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AllocationId")
+                    b.Property<int?>("AllocationId")
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("Amount")
@@ -115,6 +115,8 @@ namespace Finance.Utilities.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("AllocationId");
 
                     b.ToTable("transactions");
                 });
@@ -178,9 +180,7 @@ namespace Finance.Utilities.Migrations
 
                     b.HasOne("Finance.Models.AllocationModel", "Allocation")
                         .WithMany("Transactions")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AllocationId");
 
                     b.Navigation("Account");
 

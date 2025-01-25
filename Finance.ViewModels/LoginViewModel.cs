@@ -1,12 +1,10 @@
 ﻿using Finance.Core;
 using Finance.Models;
 using Finance.Repository.Interface.Models;
-using Finance.Services.Authentication;
 using Finance.Services.Authentication.Interface;
 using Finance.Services.Navigation.Interface;
 using Finance.Utilities.Encoder.Interface;
 using System.Net;
-using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows.Input;
 

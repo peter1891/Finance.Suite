@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Finance.Utilities.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20250122213838_TransactionModel_V1")]
-    partial class TransactionModel_V1
+    [Migration("20250125144401_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,7 +47,7 @@ namespace Finance.Utilities.Migrations
                     b.ToTable("accounts");
                 });
 
-            modelBuilder.Entity("Finance.Models.TransactionModel", b =>
+            modelBuilder.Entity("Finance.Models.AllocationModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,6 +58,41 @@ namespace Finance.Utilities.Migrations
 
                     b.Property<double>("Amount")
                         .HasColumnType("REAL");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TargetAmount")
+                        .HasColumnType("REAL");
+
+                    b.Property<DateTime>("TargetDate")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("allocations");
+                });
+
+            modelBuilder.Entity("Finance.Models.TransactionModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AllocationId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CounterParty")
                         .IsRequired()
@@ -77,13 +112,14 @@ namespace Finance.Utilities.Migrations
                     b.Property<bool>("Recurring")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("AllocationId");
 
                     b.ToTable("transactions");
                 });
@@ -126,6 +162,17 @@ namespace Finance.Utilities.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Finance.Models.AllocationModel", b =>
+                {
+                    b.HasOne("Finance.Models.AccountModel", "Account")
+                        .WithMany("Allocations")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
             modelBuilder.Entity("Finance.Models.TransactionModel", b =>
                 {
                     b.HasOne("Finance.Models.AccountModel", "Account")
@@ -134,10 +181,23 @@ namespace Finance.Utilities.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Finance.Models.AllocationModel", "Allocation")
+                        .WithMany("Transactions")
+                        .HasForeignKey("AllocationId");
+
                     b.Navigation("Account");
+
+                    b.Navigation("Allocation");
                 });
 
             modelBuilder.Entity("Finance.Models.AccountModel", b =>
+                {
+                    b.Navigation("Allocations");
+
+                    b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("Finance.Models.AllocationModel", b =>
                 {
                     b.Navigation("Transactions");
                 });

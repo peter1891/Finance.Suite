@@ -47,7 +47,7 @@ namespace Finance.Utilities.Database
 
                 entity.HasMany(a => a.Transactions)
                 .WithOne(t => t.Allocation)
-                .HasForeignKey(t => t.AccountId);
+                .HasForeignKey(t => t.AllocationId);
             });
 
             modelBuilder.Entity<TransactionModel>(entity =>
