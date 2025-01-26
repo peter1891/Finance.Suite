@@ -1,6 +1,6 @@
 ﻿using Finance.Core;
 using Finance.Enums;
-using Finance.Factory.DialogFactory;
+using Finance.Factory.DialogFactory.Interface;
 using Finance.Models;
 using Finance.Repository.Interface.Models;
 using Finance.Services.Authentication.Interface;
@@ -15,7 +15,7 @@ namespace Finance.ViewModels
         private readonly IAuthenticationService _authenticationService;
         private readonly INavigationService _navigationService;
 
-        private readonly DialogFactory _dialogFactory;
+        private readonly IDialogFactory _dialogFactory;
 
         private readonly IAllocationRepository _allocationRepository;
 
@@ -27,8 +27,8 @@ namespace Finance.ViewModels
 
         public AllocationsViewModel(
             IAuthenticationService authenticationService, 
-            INavigationService navigationService, 
-            DialogFactory dialogFactory, 
+            INavigationService navigationService,
+            IDialogFactory dialogFactory, 
             IAllocationRepository allocationRepository
             )
         {

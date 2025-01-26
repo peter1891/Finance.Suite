@@ -1,6 +1,6 @@
 ﻿using Finance.Core;
-using Finance.Factory.DialogFactory;
 using Finance.Factory.DialogFactory.Dialogs;
+using Finance.Factory.DialogFactory.Interface;
 
 namespace Finance.ViewModels
 {
@@ -17,7 +17,7 @@ namespace Finance.ViewModels
             }
         }
 
-        public DialogViewModel(DialogFactory dialogFactory)
+        public DialogViewModel(IDialogFactory dialogFactory)
         {
             Dialog = dialogFactory.GetDialog();
         }

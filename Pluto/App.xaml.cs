@@ -17,9 +17,11 @@ using Finance.Utilities.Encoder.Interface;
 using Finance.Utilities.Encoder;
 using Finance.Strategy.TransactionStrategy;
 using Finance.Strategy.TransactionStrategy.Transactions;
-using Finance.Factory.DialogFactory.Interface;
 using Finance.Factory.DialogFactory;
 using Finance.Factory.DialogFactory.Dialogs;
+using Finance.Factory.TileFactory;
+using Finance.Factory.TileFactory.Interface;
+using Finance.Factory.DialogFactory.Interface;
 
 namespace Pluto
 {
@@ -71,7 +73,8 @@ namespace Pluto
             services.AddSingleton<ITransactionRepository, TransactionRepository>();
             services.AddSingleton<IUserRepository, UserRepository>();
 
-            services.AddSingleton<DialogFactory>();
+            services.AddSingleton<IDialogFactory, DialogFactory>();
+            services.AddSingleton<ITileFactory, TileFactory>();
 
             services.AddTransient<DeleteAccountDialog<AccountsViewModel>>();
             services.AddTransient<DeleteAllocationDialog<AllocationsViewModel>>();

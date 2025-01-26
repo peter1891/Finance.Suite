@@ -1,11 +1,10 @@
 ﻿using Finance.Core;
 using Finance.Enums;
-using Finance.Factory.DialogFactory;
+using Finance.Factory.DialogFactory.Interface;
 using Finance.Models;
 using Finance.Repository.Interface.Models;
 using Finance.Services.Authentication.Interface;
 using Finance.Services.Navigation.Interface;
-using Microsoft.Extensions.DependencyInjection;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -16,7 +15,7 @@ namespace Finance.ViewModels
         private readonly IAuthenticationService _authenticationService;
         private readonly INavigationService _navigationService;
 
-        private readonly DialogFactory _dialogFactory;
+        private readonly IDialogFactory _dialogFactory;
 
         private readonly IAccountRepository _accountRepository;
 
@@ -29,8 +28,8 @@ namespace Finance.ViewModels
 
         public AccountsViewModel(
             IAuthenticationService authenticationService, 
-            INavigationService navigationService, 
-            DialogFactory dialogFactory,
+            INavigationService navigationService,
+            IDialogFactory dialogFactory,
             IAccountRepository accountRepository
             )
         {
