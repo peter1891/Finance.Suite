@@ -27,23 +27,39 @@
 
         <Border Grid.Column="0"
                 Grid.Row="1"
-                Style="{StaticResource Tile}"/>
+                Style="{StaticResource Tile}">
+
+            <ContentControl Content="{Binding TotalBalanceView}"/>
+
+        </Border>
 
         <Border Grid.Column="1"
                 Grid.ColumnSpan="2"
                 Grid.Row="1"
-                Style="{StaticResource Tile}"/>
+                Style="{StaticResource Tile}">
+
+            <ContentControl Content="{Binding IncomeExpensesView}"/>
+
+        </Border>
 
         <Border Grid.Column="0"
                 Grid.Row="2"
                 Grid.RowSpan="2"
-                Style="{StaticResource Tile}"/>
+                Style="{StaticResource Tile}">
+
+            <ContentControl Content="{Binding AllocationsView}"/>
+            
+        </Border>
 
         <Border Grid.Column="1"
                 Grid.ColumnSpan="2"
                 Grid.Row="2"
                 Grid.RowSpan="2"
-                Style="{StaticResource Tile}"/>
+                Style="{StaticResource Tile}">
+
+            <ContentControl Content="{Binding TransactionsView}"/>
+        
+        </Border>
 
     </Grid>
     

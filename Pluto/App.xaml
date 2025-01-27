@@ -38,6 +38,8 @@
 
             <ResourceDictionary.MergedDictionaries>
 
+                <ResourceDictionary Source="Views/Tiles/Tiles.xaml"/>
+
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/Border.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/Button.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Finance.Styles;component/CheckBox.xaml"/>

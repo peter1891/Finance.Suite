@@ -22,6 +22,7 @@ using Finance.Factory.DialogFactory.Dialogs;
 using Finance.Factory.TileFactory;
 using Finance.Factory.TileFactory.Interface;
 using Finance.Factory.DialogFactory.Interface;
+using Finance.Factory.TileFactory.Tiles;
 
 namespace Pluto
 {
@@ -74,10 +75,16 @@ namespace Pluto
             services.AddSingleton<IUserRepository, UserRepository>();
 
             services.AddSingleton<IDialogFactory, DialogFactory>();
-            services.AddSingleton<ITileFactory, TileFactory>();
 
             services.AddTransient<DeleteAccountDialog<AccountsViewModel>>();
             services.AddTransient<DeleteAllocationDialog<AllocationsViewModel>>();
+
+            services.AddSingleton<ITileFactory, TileFactory>();
+
+            services.AddTransient<AllocationsTile>();
+            services.AddTransient<IncomeExpensesTile>();
+            services.AddTransient<TotalBalanceTile>();
+            services.AddTransient<TransactionsTile>();
 
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<INavigationService, NavigationService>();
