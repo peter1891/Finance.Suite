@@ -3,7 +3,8 @@
     public enum TileType
     {
         Allocations,
-        IncomeExpenses,
+        Expenses,
+        Income,
         TotalBalance,
         Transactions,
     }
