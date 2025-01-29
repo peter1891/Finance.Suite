@@ -1,21 +1,25 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:v="clr-namespace:Pluto.Views.Tiles"
-                    xmlns:vm="clr-namespace:Finance.Factory.TileFactory.Tiles;assembly=Finance.Factory">
+                    xmlns:vm="clr-namespace:Finance.ViewModels.Tiles;assembly=Finance.ViewModels">
 
-    <DataTemplate DataType="{x:Type TypeName=vm:AllocationsTile}">
+    <DataTemplate DataType="{x:Type TypeName=vm:AllocationsTileViewModel}">
         <v:AllocationsView/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type TypeName=vm:IncomeExpensesTile}">
-        <v:IncomeExpensesView/>
+    <DataTemplate DataType="{x:Type TypeName=vm:ExpensesTileViewModel}">
+        <v:ExpensesView/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type TypeName=vm:TotalBalanceTile}">
+    <DataTemplate DataType="{x:Type TypeName=vm:IncomeTileViewModel}">
+        <v:IncomeView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type TypeName=vm:TotalBalanceTileViewModel}">
         <v:TotalBalanceView/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type TypeName=vm:TransactionsTile}">
+    <DataTemplate DataType="{x:Type TypeName=vm:TransactionsTileViewModel}">
         <v:TransactionsView/>
     </DataTemplate>
 
