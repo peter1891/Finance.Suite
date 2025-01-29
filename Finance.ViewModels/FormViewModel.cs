@@ -16,7 +16,7 @@ namespace Finance.ViewModels
         private IFormBuilder _iFormBuilder;
         public IFormBuilder IFormBuilder
         {
-            get { return _iFormBuilder; }
+            get => _iFormBuilder;
             set
             {
                 _iFormBuilder = value;

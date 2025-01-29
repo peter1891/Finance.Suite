@@ -11,7 +11,7 @@ namespace Finance.ViewModels
         private IAuthenticationService _authenticationService;
         public IAuthenticationService AuthenticationService
         {
-            get { return _authenticationService; }
+            get => _authenticationService;
             set
             {
                 _authenticationService = value;
@@ -24,7 +24,7 @@ namespace Finance.ViewModels
         private INavigationService _navigationService;
         public INavigationService NavigationService
         {
-            get { return _navigationService; }
+            get => _navigationService;
             set
             {
                 _navigationService = value;
