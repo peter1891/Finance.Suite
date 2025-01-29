@@ -1,7 +1,8 @@
 ﻿using Finance.Core;
 using Finance.Enums;
-using Finance.Factory.TileFactory.Interface;
 using Finance.Services.Navigation.Interface;
+using Finance.ViewModels.Tiles;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Finance.ViewModels
 {
@@ -9,7 +10,19 @@ namespace Finance.ViewModels
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly INavigationService _navigationService;
-        private readonly ITileFactory _tileFactory;
+
+        public List<DatePeriod> DatePeriods { get; set; } = Enum.GetValues(typeof(DatePeriod)).Cast<DatePeriod>().ToList();
+
+        private DatePeriod _datePeriod;
+        public DatePeriod DatePeriod
+        {
+            get => _datePeriod;
+            set
+            {
+                _datePeriod = value;
+                OnPropertyChanged(nameof(DatePeriod));
+            }
+        }
 
         private object _allocationsView;
         public object AllocationsView
@@ -22,14 +35,25 @@ namespace Finance.ViewModels
             }
         }
 
-        private object _incomeExpensesView;
-        public object IncomeExpensesView
+        private object _expensesView;
+        public object ExpensesView
         {
-            get => _incomeExpensesView;
+            get => _expensesView;
             set
             {
-                _incomeExpensesView = value;
-                OnPropertyChanged(nameof(IncomeExpensesView));
+                _expensesView = value;
+                OnPropertyChanged(nameof(ExpensesView));
+            }
+        }
+
+        private object _incomeView;
+        public object IncomeView
+        {
+            get => _incomeView;
+            set
+            {
+                _incomeView = value;
+                OnPropertyChanged(nameof(IncomeView));
             }
         }
 
@@ -57,25 +81,21 @@ namespace Finance.ViewModels
 
         public DashboardViewModel(
             INavigationService navigationService,
-            IServiceProvider serviceProvider,
-            ITileFactory tileFactory
+            IServiceProvider serviceProvider
             )
         {
             _serviceProvider = serviceProvider;
             _navigationService = navigationService;
-            _tileFactory = tileFactory;
 
-            _tileFactory.SetTile(TileType.Allocations);
-            AllocationsView = _tileFactory.GetTile();
+            AllocationsView = _serviceProvider.GetRequiredService<AllocationsTileViewModel>();
 
-            _tileFactory.SetTile(TileType.IncomeExpenses);
-            IncomeExpensesView = _tileFactory.GetTile();
+            ExpensesView = _serviceProvider.GetRequiredService<ExpensesTileViewModel>();
 
-            _tileFactory.SetTile(TileType.TotalBalance);
-            TotalBalanceView = _tileFactory.GetTile();
+            IncomeView = _serviceProvider.GetRequiredService<IncomeTileViewModel>();
 
-            _tileFactory.SetTile(TileType.Transactions);
-            TransactionsView = _tileFactory.GetTile();
+            TotalBalanceView = _serviceProvider.GetRequiredService<TotalBalanceTileViewModel>();
+
+            TransactionsView = _serviceProvider.GetRequiredService<TransactionsTileViewModel>();
         }
     }
 }

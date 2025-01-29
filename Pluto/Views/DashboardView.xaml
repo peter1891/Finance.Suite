@@ -25,6 +25,12 @@
                Grid.Row="0"
                Content="Overview"/>
 
+        <ComboBox Grid.Column="2"
+                  Grid.Row="0"
+                  ItemsSource="{Binding DatePeriods}"
+                  SelectedItem="{Binding DatePeriod}"
+                  HorizontalAlignment="Right"/>
+
         <Border Grid.Column="0"
                 Grid.Row="1"
                 Style="{StaticResource Tile}">
@@ -34,11 +40,18 @@
         </Border>
 
         <Border Grid.Column="1"
-                Grid.ColumnSpan="2"
                 Grid.Row="1"
                 Style="{StaticResource Tile}">
 
-            <ContentControl Content="{Binding IncomeExpensesView}"/>
+            <ContentControl Content="{Binding IncomeView}"/>
+
+        </Border>
+
+        <Border Grid.Column="2"
+                Grid.Row="1"
+                Style="{StaticResource Tile}">
+
+            <ContentControl Content="{Binding ExpensesView}"/>
 
         </Border>
 

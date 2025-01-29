@@ -19,10 +19,8 @@ using Finance.Strategy.TransactionStrategy;
 using Finance.Strategy.TransactionStrategy.Transactions;
 using Finance.Factory.DialogFactory;
 using Finance.Factory.DialogFactory.Dialogs;
-using Finance.Factory.TileFactory;
-using Finance.Factory.TileFactory.Interface;
 using Finance.Factory.DialogFactory.Interface;
-using Finance.Factory.TileFactory.Tiles;
+using Finance.ViewModels.Tiles;
 
 namespace Pluto
 {
@@ -58,6 +56,12 @@ namespace Pluto
             services.AddSingleton<LoginViewModel>();
             services.AddTransient<TransactionsViewModel>();
 
+            services.AddTransient<AllocationsTileViewModel>();
+            services.AddTransient<ExpensesTileViewModel>();
+            services.AddTransient<IncomeTileViewModel>();
+            services.AddTransient<TotalBalanceTileViewModel>();
+            services.AddTransient<TransactionsTileViewModel>();
+
             services.AddSingleton<TransactionContext>();
             services.AddSingleton<IngTransaction>();
 
@@ -78,13 +82,6 @@ namespace Pluto
 
             services.AddTransient<DeleteAccountDialog<AccountsViewModel>>();
             services.AddTransient<DeleteAllocationDialog<AllocationsViewModel>>();
-
-            services.AddSingleton<ITileFactory, TileFactory>();
-
-            services.AddTransient<AllocationsTile>();
-            services.AddTransient<IncomeExpensesTile>();
-            services.AddTransient<TotalBalanceTile>();
-            services.AddTransient<TransactionsTile>();
 
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<INavigationService, NavigationService>();
