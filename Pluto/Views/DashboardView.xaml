@@ -25,12 +25,6 @@
                Grid.Row="0"
                Content="Overview"/>
 
-        <ComboBox Grid.Column="2"
-                  Grid.Row="0"
-                  ItemsSource="{Binding DatePeriods}"
-                  SelectedItem="{Binding DatePeriod}"
-                  HorizontalAlignment="Right"/>
-
         <Border Grid.Column="0"
                 Grid.Row="1"
                 Style="{StaticResource Tile}">

@@ -11,19 +11,6 @@ namespace Finance.ViewModels
         private readonly IServiceProvider _serviceProvider;
         private readonly INavigationService _navigationService;
 
-        public List<DatePeriod> DatePeriods { get; set; } = Enum.GetValues(typeof(DatePeriod)).Cast<DatePeriod>().ToList();
-
-        private DatePeriod _datePeriod;
-        public DatePeriod DatePeriod
-        {
-            get => _datePeriod;
-            set
-            {
-                _datePeriod = value;
-                OnPropertyChanged(nameof(DatePeriod));
-            }
-        }
-
         private object _allocationsView;
         public object AllocationsView
         {
