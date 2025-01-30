@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\Tiles\TotalBalanceView.xaml.cs">
+    <Compile Update="Views\Tiles\TotalBalanceTileView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

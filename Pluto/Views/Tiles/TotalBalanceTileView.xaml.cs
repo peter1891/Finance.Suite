@@ -2,9 +2,9 @@
 
 namespace Pluto.Views.Tiles
 {
-    public partial class TotalBalanceView : UserControl
+    public partial class TotalBalanceTileView : UserControl
     {
-        public TotalBalanceView()
+        public TotalBalanceTileView()
         {
             InitializeComponent();
         }

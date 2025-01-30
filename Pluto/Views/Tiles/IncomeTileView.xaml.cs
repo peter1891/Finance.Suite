@@ -2,9 +2,9 @@
 
 namespace Pluto.Views.Tiles
 {
-    public partial class IncomeView : UserControl
+    public partial class IncomeTileView : UserControl
     {
-        public IncomeView()
+        public IncomeTileView()
         {
             InitializeComponent();
         }

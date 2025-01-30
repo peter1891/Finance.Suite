@@ -2,9 +2,9 @@
 
 namespace Pluto.Views.Tiles
 {
-    public partial class ExpensesView : UserControl
+    public partial class ExpensesTileView : UserControl
     {
-        public ExpensesView()
+        public ExpensesTileView()
         {
             InitializeComponent();
         }

@@ -4,23 +4,23 @@
                     xmlns:vm="clr-namespace:Finance.ViewModels.Tiles;assembly=Finance.ViewModels">
 
     <DataTemplate DataType="{x:Type TypeName=vm:AllocationsTileViewModel}">
-        <v:AllocationsView/>
+        <v:AllocationsTileView/>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type TypeName=vm:ExpensesTileViewModel}">
-        <v:ExpensesView/>
+        <v:ExpensesTileView/>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type TypeName=vm:IncomeTileViewModel}">
-        <v:IncomeView/>
+        <v:IncomeTileView/>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type TypeName=vm:TotalBalanceTileViewModel}">
-        <v:TotalBalanceView/>
+        <v:TotalBalanceTileView/>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type TypeName=vm:TransactionsTileViewModel}">
-        <v:TransactionsView/>
+        <v:TransactionsTileView/>
     </DataTemplate>
 
 </ResourceDictionary>
