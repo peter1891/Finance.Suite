@@ -54,6 +54,16 @@ namespace Finance.Repository.Repository.Models
         {
             return await DatabaseContext.TransactionModels
                 .Where(t => t.Account.UserId == id)
+                .OrderByDescending(t => t.Date)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<TransactionModel>> GetTopTransactionsByAuthenticatedIdAsync(int id)
+        {
+            return await DatabaseContext.TransactionModels
+                .Where(t => t.Account.UserId == id)
+                .OrderByDescending(t => t.Date)
+                .Take(10)
                 .ToListAsync();
         }
 
