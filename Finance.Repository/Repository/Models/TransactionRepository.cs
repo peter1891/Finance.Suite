@@ -1,4 +1,5 @@
-﻿using Finance.Models;
+﻿using Finance.Enums;
+using Finance.Models;
 using Finance.Repository.Interface.Models;
 using Finance.Utilities.Database;
 using Microsoft.EntityFrameworkCore;
@@ -50,7 +51,7 @@ namespace Finance.Repository.Repository.Models
             return false;
         }
 
-        public async Task<IEnumerable<TransactionModel>> GetTransactionsByAuthenticatedIdAsync(int id)
+        public async Task<IEnumerable<TransactionModel>> GetTransactionsByAuthIdAsync(int id)
         {
             return await DatabaseContext.TransactionModels
                 .Where(t => t.Account.UserId == id)
@@ -58,12 +59,32 @@ namespace Finance.Repository.Repository.Models
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<TransactionModel>> GetTopTransactionsByAuthenticatedIdAsync(int id)
+        public async Task<IEnumerable<TransactionModel>> GetTop10TransactionsByAuthIdAsync(int id)
         {
             return await DatabaseContext.TransactionModels
                 .Where(t => t.Account.UserId == id)
                 .OrderByDescending(t => t.Date)
                 .Take(10)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<TransactionModel>> GetCreditTransactionsByAuthIdAsync(int id, DateTime from, DateTime to)
+        {
+            return await DatabaseContext.TransactionModels
+                .Where(t => t.Account.UserId == id)
+                .Where(t => t.Date >= from && t.Date <= to)
+                .Where(t => t.Type == TransactionType.Credit)
+                .OrderByDescending(t => t.Date)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<TransactionModel>> GetDebitTransactionsByAuthIdAsync(int id, DateTime from, DateTime to)
+        {
+            return await DatabaseContext.TransactionModels
+                .Where(t => t.Account.UserId == id)
+                .Where(t => t.Date >= from && t.Date <= to)
+                .Where(t => t.Type == TransactionType.Debit)
+                .OrderByDescending(t => t.Date)
                 .ToListAsync();
         }
 

@@ -5,11 +5,46 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Pluto.Views.Tiles"
              mc:Ignorable="d">
-    
+
     <Grid>
 
-        <TextBlock Text="Income"/>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0"
+                   Grid.Row="0" 
+                   Text="Income"/>
+
+        <TextBlock Grid.Column="0"
+                   Grid.Row="1" 
+                   Text="{Binding Income}"/>
+
+        <DataGrid Grid.Column="0"
+                  Grid.Row="2"
+                  ItemsSource="{Binding TransactionModels}">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Date"
+                                    Binding="{Binding Date}"/>
+
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding Name}"/>
+
+                <DataGridTextColumn Header="Amount"
+                                    Binding="{Binding Amount}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
     </Grid>
-    
+
 </UserControl>

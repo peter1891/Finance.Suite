@@ -8,7 +8,10 @@ namespace Finance.Repository.Interface.Models
         Task<bool> VerifyTransactionAsync(TransactionModel transactionModel);
         Task<bool> IsRecurringTransactionAsync(TransactionModel transactionModel);
 
-        Task<IEnumerable<TransactionModel>> GetTransactionsByAuthenticatedIdAsync(int id);
-        Task<IEnumerable<TransactionModel>> GetTopTransactionsByAuthenticatedIdAsync(int id);
+        Task<IEnumerable<TransactionModel>> GetTransactionsByAuthIdAsync(int id);
+        Task<IEnumerable<TransactionModel>> GetTop10TransactionsByAuthIdAsync(int id);
+
+        Task<IEnumerable<TransactionModel>> GetCreditTransactionsByAuthIdAsync(int id, DateTime from, DateTime to);
+        Task<IEnumerable<TransactionModel>> GetDebitTransactionsByAuthIdAsync(int id, DateTime from, DateTime to);
     }
 }

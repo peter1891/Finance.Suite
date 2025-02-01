@@ -35,7 +35,7 @@ namespace Finance.ViewModels.Tiles
 
         private async Task GetTransactionsAsync()
         {
-            TransactionModels = new List<TransactionModel>(await _transactionRepository.GetTopTransactionsByAuthenticatedIdAsync(_authenticationService.UserId));
+            TransactionModels = new List<TransactionModel>(await _transactionRepository.GetTop10TransactionsByAuthIdAsync(_authenticationService.UserId));
         }
     }
 }

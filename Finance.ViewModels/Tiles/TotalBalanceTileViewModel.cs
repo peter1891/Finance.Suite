@@ -1,4 +1,5 @@
 ﻿using Finance.Core;
+using Finance.Enums;
 using Finance.Models;
 using Finance.Repository.Interface.Models;
 using Finance.Services.Authentication.Interface;
@@ -10,7 +11,7 @@ namespace Finance.ViewModels.Tiles
         private readonly IAuthenticationService _authenticationService;
         private readonly ITransactionRepository _transactionRepository;
 
-        public double TotalBalance { get; set; }
+        public string TotalBalance { get; set; }
 
         public TotalBalanceTileViewModel(
             IAuthenticationService authenticationService,
@@ -25,15 +26,13 @@ namespace Finance.ViewModels.Tiles
 
         private async void GetTotalBalance()
         {
-            List<TransactionModel> transactionModels = new List<TransactionModel>(await _transactionRepository.GetTransactionsByAuthenticatedIdAsync(_authenticationService.UserId));
+            var balanceList = new List<TransactionModel>(await _transactionRepository.GetTransactionsByAuthIdAsync(_authenticationService.UserId));
 
-            foreach (TransactionModel transactionModel in transactionModels)
-            {
-                if (transactionModel.Type == Enums.TransactionType.Credit)
-                    TotalBalance += transactionModel.Amount;
-                else
-                    TotalBalance -= transactionModel.Amount;
-            }
+            double totalBalance = Math.Round(
+                balanceList.Where(t => t.Type == TransactionType.Credit).Sum(t => t.Amount) - 
+                balanceList.Where(t => t.Type == TransactionType.Debit).Sum(t => t.Amount), 2);
+
+            TotalBalance = String.Format("{0:0.00}", totalBalance);
         }
     }
 }

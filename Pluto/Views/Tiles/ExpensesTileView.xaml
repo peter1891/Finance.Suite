@@ -8,8 +8,43 @@
 
     <Grid>
 
-        <TextBlock Text="Expenses"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0"
+                   Grid.Row="0" 
+                   Text="Expenses"/>
+
+        <TextBlock Grid.Column="0"
+                   Grid.Row="1" 
+                   Text="{Binding Expenses}"/>
+
+        <DataGrid Grid.Column="0"
+                  Grid.Row="2"
+                  ItemsSource="{Binding TransactionModels}">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Date"
+                                    Binding="{Binding Date}"/>
+
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding Name}"/>
+
+                <DataGridTextColumn Header="Amount"
+                                    Binding="{Binding Amount}"/>
+
+            </DataGrid.Columns>
+            
+        </DataGrid>
 
     </Grid>
-    
+
 </UserControl>

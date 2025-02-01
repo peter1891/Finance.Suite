@@ -35,7 +35,7 @@ namespace Finance.ViewModels
             if (TransactionModels.Count != 0)
                 TransactionModels.Clear();
 
-            var transactionModels = await _transactionRepository.GetTransactionsByAuthenticatedIdAsync(_authenticationService.UserId);
+            var transactionModels = await _transactionRepository.GetTransactionsByAuthIdAsync(_authenticationService.UserId);
             foreach (TransactionModel transactionModel in transactionModels)
                 TransactionModels.Add(transactionModel);
         }
