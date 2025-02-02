@@ -8,8 +8,36 @@
     
     <Grid>
 
-        <TextBlock Text="Allocations"/>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Allocations"
+                   HorizontalAlignment="Left"/>
+
+        <ItemsControl Grid.Row="1"
+                      ItemsSource="{Binding AllocationModels}">
+
+            <ItemsControl.ItemTemplate>
+
+                <DataTemplate>
+
+                    <StackPanel>
+
+                        <TextBlock Text="{Binding Name}"/>
+
+                        <TextBlock Text="{Binding Amount}"/>
+
+                    </StackPanel>
+
+                </DataTemplate>
+
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>
+
     </Grid>
     
 </UserControl>
