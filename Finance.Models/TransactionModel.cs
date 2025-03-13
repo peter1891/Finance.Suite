@@ -24,5 +24,7 @@ namespace Finance.Models
 
         public int? AllocationId { get; set; }
         public AllocationModel? Allocation { get; set; }
+
+        public long BatchNumber { get; set; }
     }
 }

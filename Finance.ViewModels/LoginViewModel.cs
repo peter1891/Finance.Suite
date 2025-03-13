@@ -4,6 +4,7 @@ using Finance.Repository.Interface.Models;
 using Finance.Services.Authentication.Interface;
 using Finance.Services.Navigation.Interface;
 using Finance.Utilities.Encoder.Interface;
+using Firebase.Auth;
 using System.Net;
 using System.Security;
 using System.Windows.Input;
@@ -12,6 +13,8 @@ namespace Finance.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
+        private readonly FirebaseAuthClient _firebaseAuthClient;
+
         private readonly IAuthenticationService _authenticationService;
         private readonly INavigationService _navigationService;
         private readonly IUserRepository _userRepository;
@@ -31,8 +34,8 @@ namespace Finance.ViewModels
             }
         }
 
-        private SecureString _password;
-        public SecureString Password
+        private string _password;
+        public string Password
         {
             get => _password;
             set
@@ -59,11 +62,14 @@ namespace Finance.ViewModels
         public ICommand ExecuteRegisterCommand {  get; }
 
         public LoginViewModel(
+            FirebaseAuthClient firebaseAuthClient,
             IAuthenticationService authenticationService, 
             INavigationService navigationService, 
             IUserRepository userRepository, 
             IPasswordEncoder passwordEncoder)
         {
+            _firebaseAuthClient = firebaseAuthClient;
+
             _authenticationService = authenticationService;
             _navigationService = navigationService;
             _userRepository = userRepository;
@@ -87,20 +93,18 @@ namespace Finance.ViewModels
 
         private async void ExecuteLogin(object obj)
         {
-            string password = _passwordEncoder.GetHashPassword(Password);
-
-            NetworkCredential networkCredential = new NetworkCredential(Email, password);
-
-            if (await _userRepository.AuthenticateUserAsync(networkCredential))
+            try
             {
-                UserModel userModel = await _userRepository.GetUserAsync(networkCredential);
+                await _firebaseAuthClient.SignInWithEmailAndPasswordAsync(this.Email, this.Password);
+
+                UserModel userModel = await _userRepository.GetUserAsync(_firebaseAuthClient.User.Uid);
                 _authenticationService.Login(userModel.Id, userModel.FirstName);
 
                 _navigationService.NavigateTo<DashboardViewModel>();
             }
-            else
+            catch (FirebaseAuthHttpException authException)
             {
-                ErrorMessage = "Invalid e-mail or password.";
+                ErrorMessage = authException.Reason.ToString();
             }
         }
     }

@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Finance.Core\Finance.Core.csproj" />
     <ProjectReference Include="..\Finance.Enums\Finance.Enums.csproj" />
     <ProjectReference Include="..\Finance.Factory\Finance.Factory.csproj" />

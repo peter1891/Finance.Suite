@@ -14,21 +14,10 @@ namespace Finance.Repository.Repository.Models
 
         }
 
-        public async Task<bool> AuthenticateUserAsync(NetworkCredential networkCredential)
+        public async Task<UserModel> GetUserAsync(string uId)
         {
             return await DatabaseContext.UserModels
-                .AnyAsync(u => u.Email == networkCredential.UserName && u.Password == networkCredential.Password);
-        }
-
-        public async Task<UserModel> GetUserAsync(NetworkCredential networkCredential)
-        {
-            return await DatabaseContext.UserModels
-                .FirstOrDefaultAsync(u => u.Email == networkCredential.UserName && u.Password == networkCredential.Password);
-        }
-
-        public async Task<bool> ValidateNewUser(string email)
-        {
-            return await DatabaseContext.UserModels.AnyAsync(u => u.Email == email);
+                .FirstOrDefaultAsync(u => u.Uid == uId);
         }
 
         public DatabaseContext DatabaseContext

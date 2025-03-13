@@ -21,6 +21,9 @@ using Finance.Factory.DialogFactory;
 using Finance.Factory.DialogFactory.Dialogs;
 using Finance.Factory.DialogFactory.Interface;
 using Finance.ViewModels.Tiles;
+using Firebase.Auth;
+using Firebase.Auth.Providers;
+using Microsoft.Extensions.Configuration;
 
 namespace Pluto
 {
@@ -39,6 +42,7 @@ namespace Pluto
 
         private void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IConfiguration>(LoadConfiguration());
             services.AddDbContext<DatabaseContext>(options => options.UseSqlite("Data Source=PlutoDB.db;"));
 
             services.AddSingleton<MainView>(provider => new MainView
@@ -87,6 +91,27 @@ namespace Pluto
             services.AddSingleton<INavigationService, NavigationService>();
 
             services.AddSingleton<Func<Type, ViewModelBase>>(serviceProvider => viewModelType => (ViewModelBase)serviceProvider.GetRequiredService(viewModelType));
+
+            services.AddSingleton<FirebaseAuthClient>(Provider =>
+            {
+                var config = Provider.GetRequiredService<IConfiguration>();
+                return new FirebaseAuthClient(new FirebaseAuthConfig()
+                {
+                    ApiKey = config["ApiKey:Firebase"],
+                    AuthDomain = "pluto-finance-fd5f6.firebaseapp.com",
+                    Providers = new FirebaseAuthProvider[]
+                    {
+                        new EmailProvider()
+                    }
+                });
+            });
+        }
+
+        private IConfiguration LoadConfiguration()
+        {
+            return new ConfigurationBuilder()
+                .AddUserSecrets<App>()
+                .Build();
         }
 
         protected override void OnStartup(StartupEventArgs e)

@@ -2,12 +2,15 @@
 using Finance.Services.Authentication;
 using Finance.Services.Authentication.Interface;
 using Finance.Services.Navigation.Interface;
+using Firebase.Auth;
 using System.Windows.Input;
 
 namespace Finance.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private readonly FirebaseAuthClient _firebaseAuthClient;
+
         private IAuthenticationService _authenticationService;
         public IAuthenticationService AuthenticationService
         {
@@ -39,8 +42,13 @@ namespace Finance.ViewModels
 
         public ICommand ExecuteLogoutCommand { get; }
 
-        public MainViewModel(IAuthenticationService authenticationService, INavigationService navigationService)
+        public MainViewModel(
+            FirebaseAuthClient firebaseAuthClient,
+            IAuthenticationService authenticationService,
+            INavigationService navigationService)
         {
+            _firebaseAuthClient = firebaseAuthClient;
+
             AuthenticationService = authenticationService;
             NavigationService = navigationService;
             NavigationService.NavigateTo<DashboardViewModel>();
@@ -53,15 +61,13 @@ namespace Finance.ViewModels
             ExecuteLogoutCommand = new RelayCommand(ExecuteLogout, obj => true);
         }
 
-        private bool CanExecuteLogout(object obj)
-        {
-            return AuthenticationService.IsAuthenticated;
-        }
-
         private void ExecuteLogout(object obj)
         {
             if (AuthenticationService.IsAuthenticated)
+            {
                 AuthenticationService.Logout();
+                _firebaseAuthClient.SignOut();
+            }
             else
                 _navigationService.NavigateTo<LoginViewModel>();
         }

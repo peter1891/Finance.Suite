@@ -9,6 +9,8 @@ namespace Finance.Utilities.Database
 
         public DbSet<AccountModel> AccountModels { get; set; }
         public DbSet<AllocationModel> AllocationModels { get; set; }
+        public DbSet<GroupModel> GroupModels { get; set; }
+        public DbSet<PersonModel> PersonModels { get; set; }
         public DbSet<TransactionModel> TransactionModels { get; set; }
         public DbSet<UserModel> UserModels { get; set; }
 
@@ -50,6 +52,20 @@ namespace Finance.Utilities.Database
                 .HasForeignKey(t => t.AllocationId);
             });
 
+            modelBuilder.Entity<GroupModel>(entity =>
+            {
+                entity.HasKey(g => g.Id);
+
+                entity.HasMany(g => g.Persons)
+                .WithOne(g => g.Group)
+                .HasForeignKey(g => g.GroupId);
+            });
+
+            modelBuilder.Entity<PersonModel>(entity =>
+            {
+                entity.HasKey(a => a.Id);
+            });
+
             modelBuilder.Entity<TransactionModel>(entity =>
             {
                 entity.HasKey(t => t.Id);
@@ -60,6 +76,10 @@ namespace Finance.Utilities.Database
                 entity.HasKey(u => u.Id);
 
                 entity.HasMany(u => u.Accounts)
+                .WithOne(a => a.User)
+                .HasForeignKey(a => a.UserId);
+
+                entity.HasMany(u => u.Groups)
                 .WithOne(a => a.User)
                 .HasForeignKey(a => a.UserId);
             });

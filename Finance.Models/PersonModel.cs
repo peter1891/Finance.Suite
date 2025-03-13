@@ -2,17 +2,16 @@
 
 namespace Finance.Models
 {
-    [Table("users")]
-    public class UserModel
+    [Table("persons")]
+    public class PersonModel
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        
-        public string Uid { get; set; }
 
-        public List<AccountModel> Accounts { get; set; }
+        public double Income { get; set; }
 
-        public List<GroupModel> Groups { get; set; }
+        public int GroupId { get; set; }
+        public GroupModel Group { get; set; }
     }
 }

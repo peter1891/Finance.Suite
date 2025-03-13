@@ -9,12 +9,15 @@ using Finance.Utilities.FormBuilder;
 using Finance.Utilities.FormBuilder.Fields;
 using Finance.Utilities.FormBuilder.Interface;
 using Finance.ViewModels;
+using Firebase.Auth;
 using System.Security;
 
 namespace Finance.Forms.FormBuilders
 {
     public class RegisterFormBuilder : FormBuilderBase, IFormBuilder
     {
+        private readonly FirebaseAuthClient _firebaseAuthClient;
+
         private readonly IAuthenticationService _authenticationService;
         private readonly INavigationService _navigationService;
         private readonly IUserRepository _userRepository;
@@ -62,8 +65,8 @@ namespace Finance.Forms.FormBuilders
             }
         }
 
-        private SecureString _password;
-        public SecureString Password
+        private string _password;
+        public string Password
         {
             get => _password;
             set
@@ -90,11 +93,14 @@ namespace Finance.Forms.FormBuilders
         private RelayCommand _submitRelayCommand;
 
         public RegisterFormBuilder(
+            FirebaseAuthClient firebaseAuthClient,
             IAuthenticationService authenticationService, 
             INavigationService navigationService, 
             IUserRepository userRepository,
             IPasswordEncoder passwordEncoder)
         {
+            _firebaseAuthClient = firebaseAuthClient;
+
             _authenticationService = authenticationService;
             _navigationService = navigationService;
             _userRepository = userRepository;
@@ -142,24 +148,22 @@ namespace Finance.Forms.FormBuilders
         {
             _submitRelayCommand = new RelayCommand( async obj =>
             {
-                if (!await _userRepository.ValidateNewUser(this.Email))
+                try
                 {
-                    string password = _passwordEncoder.GetHashPassword(Password);
+                    await _firebaseAuthClient.CreateUserWithEmailAndPasswordAsync(this.Email, this.Password);
 
-                    UserModel userModel = new UserModel()
+                    await _userRepository.AddAsync(new UserModel()
                     {
                         FirstName = this.FirstName,
                         LastName = this.LastName,
-                        Email = this.Email,
-                        Password = password
-                    };
-                    await _userRepository.AddAsync(userModel);
+                        Uid = _firebaseAuthClient.User.Uid,
+                    });
 
                     _navigationService.NavigateTo<LoginViewModel>();
                 }
-                else
+                catch (FirebaseAuthHttpException authException)
                 {
-                    ErrorMessage = "E-mail is already registered.";
+                    ErrorMessage = authException.Reason.ToString();
                 }
              }, obj => 
              {

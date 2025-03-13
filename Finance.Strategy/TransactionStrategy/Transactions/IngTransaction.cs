@@ -17,6 +17,9 @@ namespace Finance.Strategy.TransactionStrategy.Transactions
 
         public async void ImportTransactions(int accountId, string file)
         {
+            // Set the BatchNumber
+            long batchNumber = long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
+
             // Import ING specific .csv file
             string[] csvfilerecord = File.ReadAllLines(file);
 
@@ -34,6 +37,7 @@ namespace Finance.Strategy.TransactionStrategy.Transactions
                         CounterParty = cells[3].Trim('"'),
                         Description = cells[8].Trim('"'),
                         AccountId = accountId,
+                        BatchNumber = batchNumber,
                     };
 
                     if (await _transactionRepository.IsRecurringTransactionAsync(transactionModel))

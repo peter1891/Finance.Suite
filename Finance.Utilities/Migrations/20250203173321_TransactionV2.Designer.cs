@@ -3,6 +3,7 @@ using System;
 using Finance.Utilities.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Finance.Utilities.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20250203173321_TransactionV2")]
+    partial class TransactionV2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
@@ -73,53 +76,6 @@ namespace Finance.Utilities.Migrations
                     b.ToTable("allocations");
                 });
 
-            modelBuilder.Entity("Finance.Models.GroupModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("GroupName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("groups");
-                });
-
-            modelBuilder.Entity("Finance.Models.PersonModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("GroupId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double>("Income")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.ToTable("persons");
-                });
-
             modelBuilder.Entity("Finance.Models.TransactionModel", b =>
                 {
                     b.Property<int>("Id")
@@ -135,7 +91,7 @@ namespace Finance.Utilities.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("REAL");
 
-                    b.Property<long>("BatchNumber")
+                    b.Property<int>("BatchNumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Comment")
@@ -177,6 +133,10 @@ namespace Finance.Utilities.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -185,7 +145,7 @@ namespace Finance.Utilities.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Uid")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -214,28 +174,6 @@ namespace Finance.Utilities.Migrations
                         .IsRequired();
 
                     b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("Finance.Models.GroupModel", b =>
-                {
-                    b.HasOne("Finance.Models.UserModel", "User")
-                        .WithMany("Groups")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Finance.Models.PersonModel", b =>
-                {
-                    b.HasOne("Finance.Models.GroupModel", "Group")
-                        .WithMany("Persons")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Group");
                 });
 
             modelBuilder.Entity("Finance.Models.TransactionModel", b =>
@@ -267,16 +205,9 @@ namespace Finance.Utilities.Migrations
                     b.Navigation("Transactions");
                 });
 
-            modelBuilder.Entity("Finance.Models.GroupModel", b =>
-                {
-                    b.Navigation("Persons");
-                });
-
             modelBuilder.Entity("Finance.Models.UserModel", b =>
                 {
                     b.Navigation("Accounts");
-
-                    b.Navigation("Groups");
                 });
 #pragma warning restore 612, 618
         }
